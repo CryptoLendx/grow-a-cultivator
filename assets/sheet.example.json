@@ -1,0 +1,73 @@
+{
+  "formatVersion": 1,
+  "hero": {
+    "canvas": {
+      "portrait": { "w": 192, "h": 256 },
+      "sprite": { "w": 48, "h": 64, "frames": 12 }
+    },
+    "anchor": { "x": 24, "y": 62 },
+    "animations": [
+      { "id": "idle", "first": 1, "count": 4, "fps": 6, "loop": true },
+      { "id": "walk", "first": 5, "count": 4, "fps": 8, "loop": true },
+      { "id": "attack", "first": 9, "count": 4, "fps": 10, "loop": false }
+    ],
+    "rigs": ["m", "f"],
+    "slots": [
+      { "id": "aura", "depth": 10, "tint": null, "required": false },
+      { "id": "hairBack", "depth": 100, "tint": "hair", "required": false },
+      { "id": "skin", "depth": 200, "tint": "skin", "required": true },
+      { "id": "clothes", "depth": 300, "tint": "primary", "required": true },
+      { "id": "face", "depth": 400, "tint": null, "required": true },
+      { "id": "eyes", "depth": 500, "tint": null, "required": true },
+      { "id": "hairFront", "depth": 600, "tint": "hair", "required": true },
+      { "id": "accessory", "depth": 700, "tint": "accent", "required": false },
+      { "id": "weapon", "depth": 800, "tint": null, "required": false }
+    ],
+    "layers": [
+      { "id": "skin_m01", "slot": "skin", "rigs": ["m"], "portrait": "skin_m01_p.png", "sprite": "skin_m01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "skin_f01", "slot": "skin", "rigs": ["f"], "portrait": "skin_f01_p.png", "sprite": "skin_f01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "clothes_robe01", "slot": "clothes", "portrait": "clothes_robe01_p.png", "sprite": "clothes_robe01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "clothes_robe01_trim", "slot": "clothes", "tint": "secondary", "portrait": "clothes_robe01_trim_p.png", "sprite": "clothes_robe01_trim_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "face_01", "slot": "face", "portrait": "face_01_p.png", "sprite": "face_01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "eyes_01", "slot": "eyes", "portrait": "eyes_01_p.png", "sprite": "eyes_01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "hairFront_01", "slot": "hairFront", "portrait": "hairFront_01_p.png", "sprite": "hairFront_01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "hairBack_01", "slot": "hairBack", "portrait": "hairBack_01_p.png", "sprite": "hairBack_01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "weapon_sword01", "slot": "weapon", "portrait": "weapon_sword01_p.png", "sprite": "weapon_sword01_s.png", "portraitAssetId": 0, "spriteAssetId": 0 },
+      { "id": "aura_star3", "slot": "aura", "portrait": "aura_star3_p.png", "sprite": "aura_star3_s.png", "portraitAssetId": 0, "spriteAssetId": 0 }
+    ],
+    "palettes": {
+      "skin": ["F1C27D", "E0AC69", "C68642", "8D5524"],
+      "hair": ["1B1B1B", "4B3621", "A0522D"],
+      "primary": ["2F4F4F", "8B0000", "F5F5DC"],
+      "secondary": ["DAA520", "C0C0C0"],
+      "accent": ["B22222", "228B22"]
+    }
+  },
+  "sprites": [
+    {
+      "id": "goblin",
+      "category": "enemy",
+      "file": "goblin.png",
+      "assetId": 0,
+      "frame": { "w": 48, "h": 64 },
+      "columns": 8,
+      "frames": 8,
+      "anchor": { "x": 24, "y": 62 },
+      "animations": [
+        { "id": "idle", "first": 1, "count": 4, "fps": 6, "loop": true },
+        { "id": "attack", "first": 5, "count": 4, "fps": 10, "loop": false }
+      ]
+    },
+    {
+      "id": "training_center_lv1",
+      "category": "building",
+      "file": "training_center_lv1.png",
+      "assetId": 0,
+      "frame": { "w": 192, "h": 160 },
+      "columns": 1,
+      "frames": 1,
+      "anchor": { "x": 96, "y": 150 },
+      "animations": [{ "id": "idle", "first": 1, "count": 1, "fps": 1, "loop": true }]
+    }
+  ]
+}
