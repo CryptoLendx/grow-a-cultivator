@@ -1,4 +1,4 @@
-Terakhir diperbarui: 25 September 2026, 20:40 WIB
+Terakhir diperbarui: 26 September 2026, 00:50 WIB
 
 # DATA STRINGS [K] — TEKS UTUH UNTUK 9 STRING YANG TERPOTONG DI DESAIN_SISTEM_V0
 
@@ -16,7 +16,11 @@ Pelengkap `Data/Strings.luau` (tugas §B 1.5). Di DESAIN_SISTEM_V0, sembilan str
 | 6 | `REQ_MOCK_BATTLE` | `[Master '{name}({stars})' proposes a mock battle. Do you accept it?]` | "[Master 'Han(★★★)' proposes a mock battle. Do you accept it?]" | [K] ch.148, 166 | "Master" = gelar hero di kanon, bukan pemain |
 | 7 | `GIFT_GREATLY_DISAPPOINTED` | `['{name} ({stars})' is greatly disappointed after receiving the '{item}'.]` diikuti `[Likeness has drastically decreased!]` | "['Han (★★★)' is greatly disappointed after receiving the 'White Horse Statue'.]" | [K] ch.107 | Spasi sebelum "(★)" mengikuti sumber |
 | 8 | `TIPS_REST` | `[Tips/Continuous battles tire the hero. You need to take proper rest...]` | sama | [K] ch.8 | "..." ada di sumber kanon; kelanjutan tidak ditemukan |
-| 9 | `FAIL_LAST_CHANCE` | `[If you fail this time, all heroes belonging to '{party}' will be destroyed...]` | "…belonging to '1st party' will be destroyed..." | [K] ch.167 | **[INFERENSI]** Id terpotong "1st party…" di laporan Claude Code diduga mengacu ke string ini — Claude Code wajib mencocokkan dengan konteks asal di DESAIN_SISTEM sebelum memakai. "..." ada di sumber kanon. Didahului `[※Caution!]` `[This is your last chance.]` (ch.167) |
+| 9 | `FAIL_LAST_CHANCE` | `[If you fail this time, all heroes belonging to '{party}' will be destroyed...]` | "…belonging to '1st party' will be destroyed..." | [K] ch.167 | String ini tetap dipakai (teks [K] sah). Dugaan awal bahwa potongan "1st party…" di DESAIN_SISTEM mengacu ke string ini **keliru** (dicek Claude Code 25 Sep) — potongan itu adalah pengumuman penempatan lantai ch.65, lihat #10–#12. "..." ada di sumber kanon. Didahului `[※Caution!]` `[This is your last chance.]` (ch.167) |
+| 10 | `FLOOR_ASSIGN_PARTY` | `[{party} is all on the {floor} floor...]` | "[1st party is all on the 2nd floor...]" | [K] ch.65 (KANON_PMU_RAW_1) | Pengumuman master saat hierarki lantai dibuat (pemicu mass strike ch.65). "..." ada di teks sumber; kelanjutan tidak ditemukan. [ASUMSI] `{party}` & `{floor}` diisi bentuk ordinal Inggris ("1st party", "2nd") |
+| 11 | `FLOOR_ASSIGN_NAMES` | `[{names}. You guys are also on the {floor} floor.]` | "[Chloe Enoch Alter Patrick Amarin. You guys are also on the second floor.]" | [K] ch.65 | `{names}` = nama dipisah spasi tanpa bintang (sesuai sumber); sumber memakai "second" (kata), bukan "2nd" — [ASUMSI] `{floor}` bebas bentuk |
+| 12 | `FLOOR_ASSIGN_REST` | `[Everything else is on the {floor} floor.]` | "[Everything else is on the first floor.]" | [K] ch.65 | — |
+| 13 | `ROOM_HEADCOUNT` | `[Currently, there are {n} people in the waiting room... Master's instructions are...]` | "[Currently, there are 35 people in the waiting room... Master's instructions are...]" | [K] ch.65 | Pembuka pengumuman #10–#12; "..." ada di sumber |
 
 **String lain yang juga terpotong di sumber kanon** (tidak termasuk 9 di atas, dicatat supaya tidak dicari ulang): `[Tips/If there are many heroes dissatisfied with the cooking...]` [K] ch.16; `[Tips/After completing the in-depth dungeon research, the hero's stay time will incr…]` [K] ch.67. Keduanya dipakai apa adanya.
 
