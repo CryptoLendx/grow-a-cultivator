@@ -9,7 +9,7 @@ Game Roblox gacha-simulation tema wuxia, 100 % mekanik kanon novel "Pick Me Up".
 - Penyimpanan terpecah: key `core` / `heroes_N` (≤1.000 hero/key) / `archive_N` / `replays` / `mail`, semua dengan `schemaVersion`; migrasi skema + test sejak M1; hero ≤900 byte JSON.
 - Nilai tersembunyi (sifat, kebutuhan, stres, relasi, likeability, talenta) TIDAK pernah lewat Remotes atau tampil sebagai angka.
 - Semua RNG lewat `Shared/Rng.luau` berseed; tidak ada `math.random` langsung.
-- Semua angka tuning hanya di `ReplicatedStorage/Data/*.luau` (tabel murni, tanpa logika). Pesan sistem hanya di `Data/Strings.luau` (verbatim EN kanon; string non-kanon diberi komentar `-- NONKANON`).
+- Semua angka tuning hanya di `ReplicatedStorage/Data/*.luau` (tabel murni, tanpa logika); data yang hanya dipakai server dan tidak boleh terlihat klien (`NpcData`, `IdioData`) di `ServerStorage/Data/*.luau`. Pesan sistem hanya di `Data/Strings.luau` (verbatim EN kanon; string non-kanon diberi komentar `-- NONKANON`).
 - Simulasi NPC dibangun dari `docs/DESAIN_AI_NPC_V0.md`; bila ragu maksud sebuah rumus, baca dasarnya di `docs/RISET_NPC_Bukti_Perilaku_Kanon.md` (kode BK-n #m) dan `docs/RISET_NPC_Psikologi_Manusia.md` — jangan mengganti dengan pola game lain.
 - Folder `Combat/`, `Tower/`, `sim/combat_*` milik scripter eksternal — jangan diubah; panggil lewat `Shared/Types.luau` (`MissionRequest`/`MissionResult`).
 - Combat & simulasi NPC = pure Luau, tanpa Instance/Workspace/Player (harus jalan headless).
@@ -41,6 +41,7 @@ Lihat `docs/RENCANA_Build_Hibrida.md` §2 (peta folder). `Data/AutonomyData.luau
 - Akhir sesi: tulis `docs/laporan/LAPORAN_SESI_<YYYY-MM-DD>_wkN.md` (7 bagian), commit + push, lalu beri pemilik tautan laporan + satu prompt pendek untuk Cowork.
 - Pertanyaan hanya untuk keputusan milik pemilik, format `Qn` + opsi + rekomendasi default; hal yang jelas dari docs dikerjakan dan dicatat sebagai ASUMSI.
 - Balasan `Qn: …` dari pemilik/Cowork dicatat ke `docs/KEPUTUSAN.md` sebelum tugas baru dimulai.
+- Batas sesi: satu sesi Claude Code = satu siklus (kerjakan tugas → laporan). Sesi berikutnya dimulai sebagai sesi BARU dari `main`; konteks dibawa oleh repo (CLAUDE.md, `docs/KEPUTUSAN.md`, `docs/STATUS.md`, laporan), bukan oleh riwayat chat. Beri tahu pemilik dan berhenti di batas butir yang bersih bila: konteks pernah dipadatkan otomatis (auto-compact), sudah membaca ≥3 dokumen besar docs/ penuh, atau tugas berikutnya butuh baca ulang docs besar. Bagian 7 laporan WAJIB memuat blok "PROMPT SESI BERIKUTNYA" siap-tempel (tugas berikut + Langkah 0 tanggal docs + tempat menempel balasan Qn).
 
 ## Jangan
 - Jangan menyimpan gambar hero gabungan; hanya record `{rig, layers, tints}`.

@@ -1,6 +1,6 @@
 # ALUR SINKRON — Claude Code ↔ Claude Cowork
 
-Terakhir diperbarui: 25 September 2026 (disetujui pemilik)
+Terakhir diperbarui: 26 September 2026, 01:00 WIB (disetujui pemilik)
 
 Tujuan: Claude Code (repo) dan Claude Cowork (Project Knowledge + konektor GitHub repo ini) tetap selaras. Peran pemilik cukup meneruskan pesan pendek dan mengoreksi bila ada yang melenceng.
 
@@ -29,3 +29,11 @@ Tujuan: Claude Code (repo) dan Claude Cowork (Project Knowledge + konektor GitHu
 - Setiap pertanyaan diberi nomor `Qn`, opsi A/B/…, dan satu rekomendasi default beserta alasan singkat.
 - Nomor Q berlaku per laporan. Rujukan lintas sesi memakai `LAPORAN <tanggal> Qn`.
 - Keputusan yang sudah ada di `docs/KEPUTUSAN.md` tidak ditanyakan ulang.
+
+## Batas sesi & hemat token
+Siklus normal: **Code → Cowork → Code**. Riwayat chat bukan tempat menyimpan konteks; repo yang menyimpannya.
+- **Claude Code:** satu sesi = satu siklus. Setelah laporan ditulis, sesi selesai. Siklus berikutnya = sesi BARU dari `main` (membaca CLAUDE.md, `docs/KEPUTUSAN.md`, `docs/STATUS.md`, laporan terakhir). Melanjutkan sesi lama hanya bila sesi itu pendek dan belum pernah auto-compact.
+- **Claude Code memperingatkan & berhenti** di batas butir yang bersih bila: konteks pernah dipadatkan otomatis, sudah membaca ≥3 dokumen besar `docs/` penuh, atau butir berikutnya butuh baca ulang dokumen besar. Sisanya masuk laporan sebagai langkah berikutnya.
+- **Laporan bagian 7** wajib memuat blok `PROMPT SESI BERIKUTNYA` siap-tempel: tugas berikut, Langkah 0 (tanggal docs), dan tempat menempel balasan `Qn` dari Cowork. Pemilik cukup menempel: prompt itu + blok Q dari Cowork.
+- **Cowork:** satu chat boleh melayani beberapa siklus; Cowork memberi tahu saat chat panjang dan menyertakan prompt chat baru (Project Knowledge `PROMPT_Chat_Berikutnya_Tahap0.md`). Tiap chat baru menyambung ulang repo ini.
+- **Baca hemat:** baca bagian docs yang dirujuk tugas, bukan seluruh dokumen, kecuali tugas menuntut.

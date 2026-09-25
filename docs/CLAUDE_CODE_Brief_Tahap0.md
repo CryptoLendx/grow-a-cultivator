@@ -1,6 +1,6 @@
 # CLAUDE CODE — BRIEF TAHAP 0 (minggu 1–6, kredit habis 5 Nov 2026)
 
-Terakhir diperbarui: 26 September 2026, 00:46 WIB
+Terakhir diperbarui: 26 September 2026, 01:00 WIB
 
 Berkas ini berisi (A) isi `CLAUDE.md` untuk repo, (B) urutan tugas Claude Code per minggu dengan kriteria verifikasi, (C) daftar berkas Project yang disalin ke `docs/`. Sumber: TAHAPAN_Build_AI_First §2–§3, RENCANA_Build_Hibrida §2–§4, DESAIN_AI_NPC_V0, BRIEF_SCRIPTER_M2_M3 §3, RISET_Batas_Teknis_Endgame §4. Status pengerjaan per minggu dicatat di `STATUS_Tahap0.md`.
 
@@ -54,6 +54,7 @@ Lihat `docs/RENCANA_Build_Hibrida.md` §2 (peta folder). `Data/AutonomyData.luau
 - Akhir sesi: tulis `docs/laporan/LAPORAN_SESI_<YYYY-MM-DD>_wkN.md` (7 bagian), commit + push, lalu beri pemilik tautan laporan + satu prompt pendek untuk Cowork.
 - Pertanyaan hanya untuk keputusan milik pemilik, format `Qn` + opsi + rekomendasi default; hal yang jelas dari docs dikerjakan dan dicatat sebagai ASUMSI.
 - Balasan `Qn: …` dari pemilik/Cowork dicatat ke `docs/KEPUTUSAN.md` sebelum tugas baru dimulai.
+- Batas sesi: satu sesi Claude Code = satu siklus (kerjakan tugas → laporan). Sesi berikutnya dimulai sebagai sesi BARU dari `main`; konteks dibawa oleh repo (CLAUDE.md, `docs/KEPUTUSAN.md`, `docs/STATUS.md`, laporan), bukan oleh riwayat chat. Beri tahu pemilik dan berhenti di batas butir yang bersih bila: konteks pernah dipadatkan otomatis (auto-compact), sudah membaca ≥3 dokumen besar docs/ penuh, atau tugas berikutnya butuh baca ulang docs besar. Bagian 7 laporan WAJIB memuat blok "PROMPT SESI BERIKUTNYA" siap-tempel (tugas berikut + Langkah 0 tanggal docs + tempat menempel balasan Qn).
 
 ## Jangan
 - Jangan menyimpan gambar hero gabungan; hanya record `{rig, layers, tints}`.
