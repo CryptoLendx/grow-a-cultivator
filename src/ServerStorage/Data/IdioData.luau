@@ -2,6 +2,8 @@
 -- M0 katalog tujuan pribadi (DESAIN_AI_NPC_V0 §1.3) & idiosinkrasi (§1.4). Tabel murni, tanpa logika.
 -- Semua angka (TERBUKA) — dikalibrasi §9; label [K]/[N]/[INF] = dasar kanon item katalog.
 -- `Linear` = k + Σ koef·sifat (sifat 0–100); ★ TIDAK pernah menjadi variabel (prinsip populasi §0).
+-- FORMAT SIMPAN: hero.npc menyimpan INDEKS ke daftar di bawah (goals.order, foods, hobbies, habits, aversions;
+-- Autonomy/Traits.encode) → item baru hanya boleh ditambah di AKHIR daftar; jangan mengurutkan ulang/menghapus tanpa migrasi.
 
 export type Linear = { [string]: number }
 export type Count = { min: number, max: number }
