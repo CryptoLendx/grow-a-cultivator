@@ -1,6 +1,6 @@
-# DESAIN AI NPC V0 — \"M0 KEHENDAK BEBAS NPC\": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
+# DESAIN AI NPC V0 — "M0 KEHENDAK BEBAS NPC": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
 
-Terakhir diperbarui: 25 September 2026, 02:24 WIB
+Terakhir diperbarui: 25 September 2026, 22:50 WIB
 
 ## 0. TUJUAN, SUMBER, CARA MEMBACA
 
@@ -12,11 +12,11 @@ Terakhir diperbarui: 25 September 2026, 02:24 WIB
 
 **Keputusan final lain (tidak dibuka ulang):** 100 % kanon PMU; permadeath tanpa revive; TANPA LLM saat runtime (LLM hanya offline untuk menulis teks); catch-up saat login (RENCANA §3.2) **termasuk sudden death saat pemain offline** (setia kanon ch.7, keputusan pemilik 24 Sep 23:55 — lihat §8.1); skema key terpecah + `schemaVersion`; "cinta" dibangun sebagai **Ikatan Sumpah** non-romantis (§6.8 — deskriptor "romantic themes" Roblox hanya ada di label Restricted 17/18+; kanon PMU memakai sebutan keluarga "older brother/sister" ch.387, 396, bukan romansa); ikut campur duel = dibunuh (ch.29) **OFF final untuk V0** (§6.4).
 
-**Label:** [K] teks sistem verbatim · [N] narasi kanon · [INF] inferensi dari kanon · [PSI] temuan psikologi (sumber di RISET_Psikologi, nomor rujukan disebut) · **[PSI-cek]** prinsip psikologi/neurosains umum yang **belum** diverifikasi di RISET_Psikologi (dipakai sementara, wajib dicek sebelum M0 dikunci) · (TERBUKA) angka default untuk simulasi, dikalibrasi §9 — bukan kanon. **Semua angka di berkas ini (TERBUKA) kecuali berlabel [K]/[N].** Rujukan bukti: `BK-1/2/3 #n` = baris ke-n tabel A pada RISET_NPC_Bukti_Perilaku_Kanon bagian 1/2/3.
+**Label:** [K] teks sistem verbatim · [N] narasi kanon · [INF] inferensi dari kanon · [PSI] temuan psikologi (sumber di RISET_Psikologi, nomor rujukan disebut) · (TERBUKA) angka default untuk simulasi, dikalibrasi §9 — bukan kanon. **Semua angka di berkas ini (TERBUKA) kecuali berlabel [K]/[N].** Rujukan bukti: `BK-1/2/3 #n` = baris ke-n tabel A pada RISET_NPC_Bukti_Perilaku_Kanon bagian 1/2/3.
 
 **Empat aturan rekayasa (mengikat implementasi):** (1) semua nilai NPC tersembunyi — tidak pernah tampil sebagai angka, tidak pernah lewat Remotes; yang tampil hanya pesan sistem kanon + entri log (§7); (2) semua RNG lewat `Shared/Rng.luau` berseed `(profileSeed, heroId, dayIndex, slot)`; (3) pure Luau tanpa Instance/Player — jalan headless & di server (coroutine); (4) semua angka di `Data/NpcData.luau` dengan komentar `-- TERBUKA`; logika di `Autonomy/`, `Mental/`, `Social/`.
 
-**Batas skala:** ≤2.000 hero hidup/pemain (RISET_Batas_Teknis §4); hero ≤900 byte JSON (RENCANA §3.3). Anggaran M0 ≈ 220–260 byte/hero (§1.6); bila melampaui, relasi + memori pindah ke key `social_N` (TERBUKA, putuskan di M1 5.3).
+**Batas skala:** ≤2.000 hero hidup/pemain (RISET_Batas_Teknis §4); hero ≤900 byte JSON (RENCANA §3.3). Ukuran `npc` terukur jauh di atas estimasi awal (lihat §1.6: hero dengan `npc` lengkap 1.368 byte); bila hero melampaui 900 byte, relasi + memori pindah ke key `social_N` (TERBUKA, putuskan di M1 5.3).
 
 ---
 
@@ -42,7 +42,7 @@ Hero "demand, assert, refuse, or obey orders independently" [K] ch.1; ada stat t
 
 ### 1.2a Genetik × lingkungan: pengalaman tempur (`xp`) dan nyali efektif
 Kanon: Han 1★ takut→panik→"out of panic" di battle pertama (ch.3–4) lalu "free from fear" (ch.10); Calmness naik +2 level sekaligus di ambang mati (ch.20); berserk mengusir fear (ch.42); 3★+ tenang sejak battle pertama (ch.10); tetapi hero yang bertarung beruntun tanpa pemulihan justru makin rapuh (ch.70 "erosion", ch.284 stres dangerous setelah koma >1 tahun). Jadi kanon menunjukkan **dua arah**: pengalaman bisa menguatkan *atau* melemahkan, tergantung ada pemulihan.
-[PSI §5] jangkar yang sudah terverifikasi: **stress inoculation** (pengalaman berhasil mengatasi stres = pelindung), **differential susceptibility** (yang rentan lebih rusak oleh lingkungan buruk *dan* lebih diuntungkan lingkungan baik), **allostatic load** (stres berulang tanpa pemulihan mengakumulasi keausan). **[PSI, diverifikasi §5.1 RISET_NPC_Psikologi_Manusia]** pasangan **habituasi** (paparan berulang yang *selamat* menurunkan reaktivitas takut) vs **sensitisasi** (paparan berulang yang *kewalahan* menaikkannya) — konsisten dengan dual-process theory of habituation (Groves & Thompson 1970) dan literatur SEFL/stress inoculation/differential susceptibility; catatan: kekuatan bukti berbeda per komponen (habituasi & stress-inoculation kuat; sensitisasi/SEFL lebih lemah karena basis studi rodent) — lihat RISET_NPC_Psikologi_Manusia.md §5.1 untuk detail verifikasi.
+[PSI §5] jangkar yang sudah terverifikasi: **stress inoculation** (pengalaman berhasil mengatasi stres = pelindung), **differential susceptibility** (yang rentan lebih rusak oleh lingkungan buruk *dan* lebih diuntungkan lingkungan baik), **allostatic load** (stres berulang tanpa pemulihan mengakumulasi keausan). **[PSI, diverifikasi §5.1 RISET_NPC_Psikologi_Manusia]** pasangan **habituasi** (paparan berulang yang *selamat* menurunkan reaktivitas takut) vs **sensitisasi** (paparan berulang yang *kewalahan* menaikkannya) — konsisten dengan dual-process theory of habituation (Groves & Thompson 1970) dan literatur SEFL/stress inoculation/differential susceptibility; catatan: kekuatan bukti berbeda per komponen (habituasi & stress-inoculation kuat [KONSENSUS]; sensitisasi/SEFL lebih lemah [PERDEBATAN] karena basis studi rodent, belum direplikasi langsung pada manusia) — lihat RISET_NPC_Psikologi_Manusia.md §5.1 untuk detail verifikasi per komponen.
 
 - `xp` (0–100, tersembunyi): seed saat summon **0 / 15 / 40** untuk 1★ / 2★ / 3★+ [N] ch.10 (TERBUKA).
 - **Habituasi**: +2 per misi selamat **tanpa** panic; +4 bila selamat dari situasi kritis (HP <30 % atau rekan mati) tanpa panic (kanon "Skill Awakening" ch.20 = lonjakan justru di krisis). Batas atas per hero `xp_max = 40 + 0,6·cou` — hero bernyali rendah tetap bisa belajar, tetapi plafonnya lebih rendah (genetik membatasi lingkungan).
@@ -75,6 +75,17 @@ Katalog `IdioData` (id pendek): gift favorit ×1–2 & dibenci ×1 (dari GiftDat
 [PSI §7] merujuk masa lalu = tanda pikiran yang mengingat; [PSI §6] memori spesifik = bahan continuing bonds. Kanon: hero mengingat "three years without you" (BK-2 #56), memutar arsip rekan yang mati (ch.146), menulis diary (BK-2 #9), Amkena "They were all alive" (BK-3 #86).
 `mem = {day, kind, otherId?, valence(−2..+2)}`; kind ∈ {selamat-bersama, rekan-mati-di-sisiku, MVP, kalah-duel, menang-duel, dihukum, tuntutan-diterima, gift-berkesan, diselamatkan-oleh, menyelamatkan, dikhianati, naik-lantai, turun-lantai, disintesis-rekanku}. Kapasitas 10; yang dibuang = valensi terkecil & tertua, kecuali bertanda kunci (kematian ikatan intim). Memori dirujuk oleh: utilitas (§5: "aku tak mau ke labirin lagi"), event (§6: dendam/duka), log & balon bicara (§7).
 
+### 1.6a Kesadaran status sendiri (Hero Reactivity Lv.1, kanon ch.53–56)
+Kanon [K]/[N] ch.53, 54, 56: riset "Hero Reactivity" Lv.1 (Research §5.3 DESAIN_SISTEM) membuka kemampuan hero **melihat status window sendiri** (4 stat + skill) dan **objektif misi**; sebelum itu hero tidak melihat angkanya sendiri sama sekali (§3.1 DESAIN_SISTEM, ch.14). Di DESAIN_SISTEM_V0 ini baru tercatat sebagai fitur UI/riset; di sini ditambahkan efeknya pada **keputusan** hero (M0), karena kanon menyiratkan kesadaran diri baru muncul setelah riset ini — sebelum itu hero bertindak dari perasaan (kebutuhan/stres/relasi), bukan dari perbandingan angka.
+
+- Flag `awr` (boolean, di `NpcData`/profil `core`, bukan per hero — riset berlaku seluruh waiting room begitu Lv.1 tercapai): `false` sebelum Hero Reactivity Lv.1, `true` sesudahnya.
+- **Efek saat `awr = false`** (default V0 awal game): bias sifat & tujuan di §5.2 berjalan seperti biasa TANPA komponen pembanding stat; noise §5.2 tetap ±8 (tidak berubah) — hero bertindak murni dari dorongan internal, konsisten kanon awal game (ch.7–14) sebelum riset dibuka.
+- **Efek saat `awr = true`**: dua bias baru ditambahkan ke §5.2, HANYA untuk hero dengan flag ini aktif:
+  1. **Latih jadi lebih terarah** (kanon: "latihan terarah" ch.53): bias `latih` +0,3·(1 − rank_percentile(stat_utama_class, party)) — hero yang tahu dirinya lemah di party (persentil rendah pada stat kelasnya) mendapat dorongan tambahan berlatih; hero yang tahu dirinya sudah kuat relatif TIDAK mendapat bonus ini (sudah puas, bukan dipaksa berhenti — hanya kehilangan dorongan ekstra).
+  2. **Envy jadi berbasis angka, bukan cuma hasil** (§4.3): sebelum `awr`, evaluasi iri hanya dari peristiwa terlihat (MVP, promosi, gift — sudah ada). Sesudah `awr`, hero **tahu** bila stat mitra setingkat lebih tinggi meski belum pernah menang MVP — ambang evaluasi iri (§4.3) diperlonggar dari "mitra naik ★/MVP" menjadi juga terpicu oleh selisih stat kelas ≥15 poin pada mitra `★` sama, dengan bobot lebih kecil (×0,5 dari pemicu peristiwa) karena angka mentah kurang emosional dibanding kejadian sosial [PSI §4: perbandingan sosial berbasis kejadian > berbasis angka statis].
+- **Tidak** dijadikan input sudden death/stres/relasi — kanon tidak menyiratkan melihat status sendiri itu menyakitkan atau menenangkan; ini murni kanal informasi untuk arah latihan & envy, bukan sumber emosi baru.
+- Penyimpanan: `awr` disimpan sekali di `core` (bukan per hero, ≈1 bit), diperiksa saat §5.2 dijalankan; tidak menambah byte per hero (§1.6).
+
 ### 1.6 Penyimpanan
 ```
 hero.npc = {
@@ -91,7 +102,7 @@ hero.npc = {
   ls = dayIndex,
 }
 ```
-≈ 14+6+8+24+10+6+12+8×14+10×10+8+6 ≈ **306 byte** (TERBUKA; verifikasi `JSONEncode` di M1 5.3 — bila >900 byte total, `rl`+`mm` pindah ke key `social_N`).
+**Ukuran terukur** (repo, tugas §B 1.4, 25 Sep 2026; encoder JSON tiruan di runner Lune — konfirmasi dengan `HttpService:JSONEncode` di Studio): hero dummy dengan `npc` lengkap (8 `rl` + 10 `mm`) = **1.368 byte** (> 900); tanpa `rl`+`mm` = 770 byte (≤ 900). Blok `rl` ≈225 byte dan `mm` ≈361 byte dalam format objek; format array ≈153 / 201 byte. Keputusan `rl`+`mm` tetap di `heroes_N` (dengan format array) vs pindah ke key `social_N` diambil di M1 5.3 (TERBUKA). [INFERENSI] 1.000 hero × 1.368 byte ≈ 1,37 MB per key `heroes_N` — masih di bawah larangan >2 MB, tetapi hitungan endgame RISET_Batas_Teknis (asumsi 600–900 byte/hero) perlu dihitung ulang di M1 5.3.
 
 ---
 
@@ -150,6 +161,8 @@ Nilai tersembunyi, naik/turun [N] ch.70; **3 ambang**: warning "[Hero 'X's stres
 
 ### 3.4 Luka moral (moral injury) — terpisah dari takut [PSI §5 Shay/Litz]
 Kanon: hero sadar mereka "expendable" dan "respond better to masters who treat them as individuals" (ch.234); sintesis massal pemogok merusak morale semua (ch.48, 66); membunuh manusia menambah stres (ch.57); tiga hero ikut campur duel dibunuh rekannya sendiri (ch.29). Pemicu: (a) disintesis-rekanku (semua yang a ≥ 8 ke korban), (b) melawan humanoid bagi hero `A ≥ 65`, (c) perintah master yang melanggar nilai (mengirim party yang sudah menolak = compound paksa), (d) meninggalkan rekan (party wipe dengan penyintas). Efek: `guilt` 0–100 per hero (+15…+30), likeability ke master −10 (pengkhianatan oleh otoritas), penarikan diri (aksi sosial −50 % selama 14 hari). Pulih **bukan** lewat istirahat: pengakuan (master menerima tuntutan), penebusan (menyelamatkan rekan → guilt −20), ritual (§6.10), penerimaan rekan (dihibur oleh t ≥ 9).
+
+**Hesitasi mid-combat vs humanoid (pemicu b, diperluas):** kanon ch.55–57 hanya menyatakan efek pasca-misi ("stres naik"); tidak ada detail perilaku *selama* pertarungan di ekstraksi kami saat ini (keterbatasan pencarian — belum ditemukan di novel ch.1–400 maupun 16 screenshot manhwa yang ada; bukan berarti tidak ada di sumber aslinya). Karena engine M2 (BRIEF_SCRIPTER §3) sudah menerima `fearResistance` per hero sebagai probabilitas panik, hesitasi terhadap lawan manusia dirancang sebagai **perluasan mekanisme yang sama** (bukan sistem baru): hero `A ≥ 65` menghadapi `EnemyData` bertanda `isHumanoid = true` (field di data musuh milik scripter, TERBUKA per baris) mendapat `hesitation` (§8.2) — probabilitas tambahan delay 1 tick sebelum menyerang target itu, terpisah dari fear/panic biasa. Ini [INF]/[USUL] saya sebagai desain, bukan kanon literal — ditandai TERBUKA sampai ada bukti kanon yang lebih spesifik (chapter yang menunjukkan keraguan *saat* bertarung, bukan cuma sesudahnya).
 
 ### 3.5 Sudden death — hanya pada kombinasi faktor [PSI §5 Joiner; kanon Mormont]
 Kanon Mormont: 2★ baru, hari-hari pertama, belum punya relasi, wipe pertama 9 dari 11 (BK-1 #4–6) — cocok persis dengan teori interpersonal: **thwarted belongingness + perceived burdensomeness**. Kanon ch.42: "depresi karena kematian teman dekat = penyebab utama sudden death" — jadi hero yang *baru kehilangan* ikatannya justru paling berisiko. Roll harian **hanya** bila SEMUA: `st ≥ ambang patah` DAN `rel < 30` DAN (tidak ada relasi **ke hero yang masih hidup** dengan t ≥ 9 atau a ≥ 8 — relasi ke hero yang sudah mati **tidak** melindungi; ia masuk faktor "kehilangan besar") DAN (kehilangan besar ≤30 hari ATAU gagal berulang ≥3 misi tanpa kontribusi). `p = 0,03·(1 + vul/100)·(1 + ld/100)` per hari (TERBUKA). Faktor pelindung yang mematikan roll: ≥1 ikatan hidup t ≥ 9; jabatan/murid yang bergantung padanya; dihibur dalam 3 hari terakhir. Keluaran [K] ch.7: "['X (★★)' has returned to the arms of the goddess. His fighting spirit will be remembered forever.]" → "[Sudden death!]" → "[Cause – Suicide due to stress]". **Warning** [K] ch.284 dikirim saat `st ≥ ambang − 15` (1× per episode) — supaya pemain punya jendela 3–10 hari untuk bertindak (gift tidak bekerja saat `st ≥ 70` [K] ch.284 → yang bekerja: vacation, menghibur lewat rekan, mengurangi beban). Roll **tetap berjalan saat pemain offline** (§8.1) — kanon Mormont mati saat master tidak login.
@@ -327,7 +340,7 @@ Kanon: bentuk duka = keluar bond (Edith ch.29), berserk/soul turbulent saat reka
 Kanon manhwa: hero punya percakapan & kehidupan penuh yang **tidak** sampai ke master — "He can't hear our voices… it's going to get filtered and reduced before being relayed to the master" [T-gambar ch.8]; yang sampai hanya pesan ringkas per hero ("Jenna(★) is discontent about the food"). Feed kita = saringan itu; hero **sadar** disaring, sehingga yang ingin didengar harus bertindak (request/mogok/duel) — dasar kanon untuk §6. Yang memicu empati pemain = tanda **Experience** (lapar, takut, rindu, lega, malu, bosan) — bukan kecerdasan taktis. Karena itu setiap aksi/event menghasilkan **entri log berpotret** yang menunjukkan perasaan, dan **balon bicara** hero di markas 2D menampilkan `kind` aksi hari ini (RISET_HUD §4). Tidak ada angka.
 
 ### 7.2 Empat saluran
-1. **Pesan sistem verbatim** `Data/Strings.luau` — semua [K] dari KANON_04/05 & §6 (contoh §7.4). String tambahan berlabel `-- NONKANON`, ditulis LLM **offline** dalam gaya sistem, id ditentukan di sini: `STEAL, EXTORT, PROVOKE, WENT_ALONE, DECLINED_POSITION, GRIEF_VISIT, MENTIONS_DECEASED, BOND_NAMED, WILL_WRITTEN, MEMORIAL_CARD`.
+1. **Pesan sistem verbatim** `Data/Strings.luau` — semua [K] dari KANON_04/05 & §6 (contoh §7.4); teks utuh string [K] yang terpotong di DESAIN_SISTEM ada di `Data_Strings_K_Lengkap.md`. String tambahan berlabel `-- NONKANON`, ditulis LLM **offline** dalam gaya sistem, id ditentukan di sini: `STEAL, EXTORT, PROVOKE, WENT_ALONE, DECLINED_POSITION, GRIEF_VISIT, MENTIONS_DECEASED, BOND_NAMED, WILL_WRITTEN, MEMORIAL_CARD` (teks di `Data_Strings_NONKANON.md`).
 2. **Log/feed** `{day, heroId, kind, targetId?, payload}` — tanpa nilai tersembunyi; payload hanya id string + nama; ditampilkan sebagai feed berpotret dengan 3–5 varian teks per kind (LLM offline). **Pemilihan varian deterministik per hero**, bukan acak: `variantIndex = hash(heroId, kind, idiosinkrasi.hb) mod n` — sehingga tiap hero punya "suara" tetap untuk kind yang sama (Han selalu diberitakan dengan kalimat yang sama saat mengenang; Iolka dengan kalimat lain). Alasan: dengan 20+ hero × 30 hari, varian acak membuat pola template terlihat dan merusak uji §9 butir (d); varian tetap per hero justru terbaca sebagai kepribadian [PSI §7 idiosinkrasi]. Varian juga menyisipkan nama relasi dan idiosinkrasi hero (bukan hanya nama korban/target).
 3. **Balon bicara** di markas: satu ikon/teks pendek per hero = aksi hari ini (latih/istirahat/hobi X/mengenang Y/kesal/senang).
 4. **Kartu memorial** (Archive, DESAIN §5.2): saat hero mati, sistem merangkai kartu dari: nama & ★ & umur layanan; 3–5 memori valensi tertinggi (dengan siapa); idiosinkrasi (hobi, makanan, kebiasaan); relasi bernama (sahabat, murid, sumpah); barang peninggalan (bila ada). Ini bahan duka pemain; pemain boleh memberi nama nisan & memilih memento (ritual [PSI §6]).
@@ -352,7 +365,7 @@ S.REQ_FACILITY  = "[Master hero '{name} ({stars})' requests the '{facility}' fac
 S.REQ_RETREAT   = "[Master hero '{name} ({stars})' requests to retreat from the field!]"            -- [K] ch.235
 S.ARCHIVE_DONE  = "[The archive is complete! You can look back on the heroes who left in the arms of the goddess.]" -- [K] ch.79
 S.GRIEF_VISIT   = "['{name}' spent the evening at the archive, in front of '{deceased}'s belongings.]" -- NONKANON
-S.MENTIONS_DEAD = "['{name}' mentioned '{deceased}' again today.]"                                   -- NONKANON
+S.MENTIONS_DECEASED = "['{name}' mentioned '{deceased}' again today.]"                               -- NONKANON
 S.EXTORT        = "['{a}' took '{item}' from '{b}' by force.]"                                       -- NONKANON
 ```
 
@@ -363,7 +376,7 @@ S.EXTORT        = "['{a}' took '{item}' from '{b}' by force.]"                  
 ### 8.1 Catch-up saat login (RENCANA §3.2)
 `Autonomy.catchUp(profile, nowUtc)`: Δhari = (now − lastSeen) × 3, maks 21 hari in-game (sisa = "istirahat": need → 80, st −3/hari, duka tetap berjalan, tanpa event lain). Loop `Npc.tickDay(state, day, rng)` di coroutine, `task.wait()` tiap 200 hero; pesan → `mail`, log → `replays`, memori → hero. Online: tick tiap 8 jam Bumi. **Sudden death selama catch-up [FINAL 24 Sep 23:55, setia kanon]:** roll §3.5 tetap berjalan di 21 hari pertama absen — hero bisa mati saat pemain tidak login (kanon Mormont ch.7: master tidak tahu apa-apa; hero hidup mandiri ch.207). Warning [K] ch.284 tetap masuk `mail` dengan tanggal in-game-nya, sehingga pemain yang kembali melihat urutan: warning → (bila terlambat) kematian. Ini disengaja untuk tujuan M0 (kematian yang bisa dicegah tetapi terlewat = duka yang nyata), bukan bug.
 
-### 8.2 Kontrak combat engine (BRIEF_SCRIPTER §3, field tidak berubah)
+### 8.2 Kontrak combat engine (BRIEF_SCRIPTER §3 — `hesitation`, `panicEvents`, `minHpPct`, `EnemyData.isHumanoid` sudah masuk draf kontrak sebelum scripter direkrut; disepakati tertulis di T0)
 | `HeroInput.hidden` | Sumber M0 |
 |---|---|
 | `fearResistance` 0..1 | `0,15 + 0,55·cou_eff/100 + 0,15·(100−E)/100 + 0,15·(100−vul)/100 − 0,2·st/100`, clamp — `cou_eff` (§1.2a) membawa genetik + pengalaman + keausan |
@@ -371,7 +384,8 @@ S.EXTORT        = "['{a}' took '{item}' from '{b}' by force.]"                  
 | `bondWith` | flag Bond/Sumpah/mentor |
 | `enmityWith` | flag Enmity atau a ≤ −5 |
 | `compatibility {id: n}` | `(a/7 + (t−4)/11 − (env==2 ? 0,5 : 0))` untuk anggota party sama, rentang −1,5..+2 |
-**Sebelum kirim:** gate §6.1; party uncontrollable ditolak. **Setelah `MissionResult`:** `alive=false` → §6.10 untuk semua yang berduka; `mvpHeroId` → cmp +25, st −8, memori MVP; rekan setingkat MVP → evaluasi iri (§4.3); vs humanoid → §3.4 bagi A ≥ 65; `awakeningEvents` → cmp +5; `damageTaken` tinggi → memori; semua: rest −25, st +10 (kurva §3.3), f rekan party ×5; `contribution` rendah ≥3 misi → cmp −5, guilt (jadi beban) +5; party wipe dengan penyintas → survivor guilt; **`panicEvents` per hero → `xp` (§1.2a): selamat tanpa panic +2 (+4 bila kritis), panic/despair dicatat untuk cek pemulihan 3 hari berikutnya**.
+| `hesitation` 0..1 (TERBUKA/USUL, §3.4) | `clamp(0,3·(A−50)/50, 0, 1)` bila `A ≥ 65`, else 0 — dipakai engine hanya untuk target `EnemyData.isHumanoid = true`; tidak memengaruhi target non-humanoid. Sudah tercantum di draf kontrak BRIEF_SCRIPTER §3 (tanpa biaya change request karena scripter belum direkrut); tetap berstatus usulan desain (§10.2 #6) |
+**Sebelum kirim:** gate §6.1; party uncontrollable ditolak. **Setelah `MissionResult`:** `alive=false` → §6.10 untuk semua yang berduka; `mvpHeroId` → cmp +25, st −8, memori MVP; rekan setingkat MVP → evaluasi iri (§4.3); vs humanoid → §3.4 bagi A ≥ 65; `awakeningEvents` → cmp +5; `damageTaken` tinggi → memori; semua: rest −25, st +10 (kurva §3.3), f rekan party ×5; `contribution` rendah ≥3 misi → cmp −5, guilt (jadi beban) +5; party wipe dengan penyintas → survivor guilt; **`panicEvents` per hero → `xp` (§1.2a): kosong (selamat tanpa panic) → +2, atau +4 bila kritis (`minHpPct < 30` atau ada rekan party `alive=false`); episode `panic`/`despair` dicatat untuk cek pemulihan 3 hari berikutnya** (`fear` saja tidak dihitung sebagai episode sensitisasi — TERBUKA).
 
 ### 8.3 Modul lain
 M1: `Traits.roll` + `xp` seed + goal + idiosinkrasi + tag di `Hero.new()`; Bond/Enmity summon → slot. M5: lantai/jabatan/fasilitas → §2.2, §4.5; duel → M2 headless; Archive → §6.10. M7: gift/likeability, warning/sudden death, 3 opsi mogok, hukuman, vacation, compound command UI (§6.1). M8: feed berpotret, balon, kartu memorial, prompt Yes/No.
@@ -416,7 +430,7 @@ M1: `Traits.roll` + `xp` seed + goal + idiosinkrasi + tag di `Hero.new()`; Bond/
 
 ---
 
-## 10. STATUS KEPUTUSAN M0 (diperbarui 25 Sep 2026, 02:24 WIB)
+## 10. STATUS KEPUTUSAN M0 (diperbarui 25 Sep 2026, 20:40 WIB)
 
 ### 10.1 [FINAL] — diputuskan pemilik 24 Sep 23:55, tidak dibuka ulang
 1. **Prinsip populasi** (§0): tidak ada kategori psikologis yang di-roll; proporsi = hasil emergen; ★ = pengalaman awal (`xp`), bukan watak.
@@ -429,12 +443,17 @@ M1: `Traits.roll` + `xp` seed + goal + idiosinkrasi + tag di `Hero.new()`; Bond/
 8. **Varian log deterministik per hero** (§7.2).
 9. **Pemerasan** sebagai aksi (§6.5, kanon ch.158).
 10. **Discharge** = [V1+]; di V0 goal "hidup tenang/pulang" hanya memengaruhi refusal & request vacation.
+11. **Id string `MENTIONS_DECEASED`** (§7.2–7.3) — bukan `MENTIONS_DEAD` (pemilik, 25 Sep 2026).
+12. **Data `panicEvents` + `minHpPct` dari engine** (§8.2) sebagai sumber `xp` — masuk draf kontrak BRIEF_SCRIPTER §3 (pemilik, 25 Sep 2026).
 
 ### 10.2 (TERBUKA — tunggu implementasi/simulasi, bukan PR desain)
 1. Semua koefisien §1.2/§1.2a roll, drift, `xp`, §2.2 laju, §3.2–3.5 (ambang, `vul`, `ld`, p sudden death), §3.6, §4.3 Δ & bobot f, §4.6 SIMCA, §5.2 bobot/bias/noise, §6 probabilitas, §6.10 durasi D — dikalibrasi §9 setelah harness jalan (M0 minggu 4).
-2. `rl`+`mm` di `heroes_N` vs `social_N` — setelah verifikasi byte M1 5.3.
+2. `rl`+`mm` di `heroes_N` vs `social_N` — diputuskan di M1 5.3; data terukur di §1.6 (npc lengkap 1.368 byte > 900).
 3. Estimasi `bahaya` lantai (§6.1) — dari CSV M3 T3.
-4. **[PSI]** habituasi/sensitisasi (§1.2a) — sudah diverifikasi via RISET_NPC_Psikologi_Manusia.md §5.1 (25 Sep 2026): arah & bentuk mekanisme konsisten dengan literatur (Groves & Thompson 1970, SEFL, stress inoculation, differential susceptibility); label naik dari [PSI-cek] ke [PSI]. Angka spesifik tetap TERBUKA/ESTIMASI — bukan derivasi literal dari studi manapun.
+4. **[PSI]** habituasi/sensitisasi (§1.2a) — status label naik final dari [PSI-cek] ke [PSI] (25 Sep 2026, disetujui pemilik): diverifikasi via RISET_NPC_Psikologi_Manusia.md §5.1, arah & bentuk mekanisme konsisten dengan literatur (Groves & Thompson 1970, SEFL, stress inoculation, differential susceptibility). Kekuatan bukti berbeda per komponen (dicatat di §1.2a): habituasi & stress inoculation [KONSENSUS]; sensitisasi/SEFL [PERDEBATAN] (basis studi rodent). Angka spesifik (+2/+4/−3/−6/×1,5) tetap TERBUKA/ESTIMASI — bukan derivasi literal dari studi manapun, hanya arah & bentuk mekanisme yang terverifikasi.
+5. **Kesadaran status sendiri `awr`** (§1.6a) — dasar kanon kuat (ch.53–56, Hero Reactivity Lv.1), tapi efeknya pada bias latih & envy adalah **usulan saya** (belum ada kanon yang menjelaskan efek perilaku spesifik dari kesadaran ini) — koefisien 0,3/0,5 TERBUKA, perlu dikalibrasi §9 seperti koefisien lain.
+6. **`hesitation` mid-combat vs humanoid** (§3.4/§8.2) — **seluruhnya usulan saya [USUL]**, bukan derivasi kanon literal: kanon ch.55–57 hanya menyebut efek pasca-misi (stres naik), belum ditemukan bukti kanon untuk perilaku *selama* pertarungan (pencarian kami terbatas pada novel ch.1–400 yang sudah diekstrak + 16 screenshot manhwa ch.4–17 — adegan spesifik yang disebut pemilik dari manhwa ch.44–45 belum bisa diverifikasi, sumber pembaca manhwa online tidak bisa diakses untuk ekstraksi dan wiki fandom tidak memuat ringkasan chapter itu). Field `hesitation` dan `EnemyData.isHumanoid` sudah masuk draf kontrak BRIEF_SCRIPTER §3 sebelum scripter direkrut (tanpa biaya change request); disepakati tertulis di T0. Bila pemilik nanti mendapat screenshot/sumber terverifikasi ch.44–45, rancangan ini WAJIB ditinjau ulang terhadap bukti itu.
+7. **Episode `fear`** (tanpa eskalasi ke panic) dihitung sebagai sensitisasi atau tidak (§8.2) — default: tidak; dikalibrasi §9.
 
 ### 10.3 [PENDING — tugas terpisah, bukan keputusan]
 (Kosong — butir 1, teks NONKANON + kartu memorial, telah diselesaikan; lihat `claude/Data_Strings_NONKANON.md`.)

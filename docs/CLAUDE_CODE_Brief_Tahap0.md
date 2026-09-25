@@ -1,17 +1,17 @@
 # CLAUDE CODE — BRIEF TAHAP 0 (minggu 1–6, kredit habis 5 Nov 2026)
 
-Terakhir diperbarui: 25 September 2026, 01:24 WIB
+Terakhir diperbarui: 25 September 2026, 22:50 WIB
 
-Berkas ini berisi (A) isi `CLAUDE.md` untuk repo, (B) urutan tugas Claude Code per minggu dengan kriteria verifikasi, (C) daftar berkas Project yang disalin ke `docs/`. Sumber: TAHAPAN_Build_AI_First §2–§3, RENCANA_Build_Hibrida §2–§4, DESAIN_AI_NPC_V0, BRIEF_SCRIPTER_M2_M3 §3, RISET_Batas_Teknis_Endgame §4.
+Berkas ini berisi (A) isi `CLAUDE.md` untuk repo, (B) urutan tugas Claude Code per minggu dengan kriteria verifikasi, (C) daftar berkas Project yang disalin ke `docs/`. Sumber: TAHAPAN_Build_AI_First §2–§3, RENCANA_Build_Hibrida §2–§4, DESAIN_AI_NPC_V0, BRIEF_SCRIPTER_M2_M3 §3, RISET_Batas_Teknis_Endgame §4. Status pengerjaan per minggu dicatat di `STATUS_Tahap0.md`.
 
-Waktu tersedia: 24 Sep → 5 Nov 2026 = **6 minggu**; alokasi pemilik 12 jam/minggu (RENCANA) → ±72 jam pemilik + sesi Claude Code. Target Tahap 0 (TAHAPAN §3): minggu 1 (repo, tipe, skema key, catch-up, sheet.json) → **M0 simulasi NPC headless + test** → **M1** (summon, hero, record tampilan, ProfileService) → mulai M5. RENCANA §4 mengalokasikan M1 di minggu 2–4; M0 disisipkan sebelum M1 karena hero.npc di-roll di `Hero.new()` (DESAIN_AI_NPC §8.3) — urutan di §B menyesuaikan.
+Waktu tersedia: 24 Sep → 5 Nov 2026 = **6 minggu**; alokasi pemilik 12 jam/minggu (RENCANA) → ±72 jam pemilik + sesi Claude Code. Target Tahap 0 (TAHAPAN §3): minggu 1 (repo, tipe, skema key, catch-up, sheet.json) → **M0 simulasi NPC headless + test** → **M1** (summon, hero, record tampilan, ProfileStore) → mulai M5. RENCANA §4 mengalokasikan M1 di minggu 2–4; M0 disisipkan sebelum M1 karena hero.npc di-roll di `Hero.new()` (DESAIN_AI_NPC §8.3) — urutan di §B menyesuaikan.
 
 ---
 
 ## A. ISI `CLAUDE.md` (salin apa adanya ke root repo)
 
 ```markdown
-# Raise a Cultivator — Roblox (Rojo) — CLAUDE.md
+# Grow a Cultivator — Roblox (Rojo) — CLAUDE.md
 
 ## Apa proyek ini
 Game Roblox gacha-simulation tema wuxia, 100 % mekanik kanon novel "Pick Me Up". 2D landscape tampak 3/4 isometrik (sprite berlapis), mobile-first. Pemain = Master; hero = NPC otonom dengan sifat/kebutuhan/relasi (simulasi, TANPA LLM runtime); permadeath tanpa revive. Spesifikasi lengkap ada di `docs/` — BACA `docs/DESAIN_SISTEM_V0.md` §3, §5, §6 dan `docs/DESAIN_AI_NPC_V0.md` sebelum menyentuh modul terkait. Jangan mendesain ulang: angka bertanda (TERBUKA) diisi default dari docs + komentar `-- TERBUKA`, bukan dikarang.
@@ -64,11 +64,11 @@ Setiap baris = satu sesi Claude Code yang bisa selesai dalam 1–3 jam. "Verifik
 ### Minggu 1 — repo, tipe, skema (RENCANA §3)
 | # | Tugas | Verifikasi |
 |---|---|---|
-| 1.1 | Inisialisasi repo: `default.project.json` sesuai RENCANA §2, `wally.toml` (ProfileService/ProfileStore, TestEZ), `selene.toml`, `stylua.toml`, `.gitignore`, `CLAUDE.md` (§A), `docs/` (§C), `tests/run.server.luau` | `rojo build` sukses; `selene` 0 error; test kosong lulus |
+| 1.1 | Inisialisasi repo: `default.project.json` sesuai RENCANA §2, `wally.toml` (ProfileStore, TestEZ), `selene.toml`, `stylua.toml`, `.gitignore`, `CLAUDE.md` (§A), `docs/` (§C), `tests/run.server.luau` | `rojo build` sukses; `selene` 0 error; test kosong lulus |
 | 1.2 | `Shared/Types.luau`: `HeroInput`, `PartyInput`, `FloorRow`, `MissionRequest`, `MissionResult`, `EventLine`, `Appearance` — persis BRIEF_SCRIPTER §3 (field final) | type-check `--!strict` lulus; dokumentasi 1 baris per field |
-| 1.3 | `Shared/Rng.luau`: RNG berseed deterministik (`Random.new(seed)` dibungkus) dengan `derive(seed, ...parts)` → sub-seed stabil (hash string) | test: 2 run seed sama → 1.000 angka identik; sub-seed `(profile, hero, day, slot)` tidak bertabrakan pada 100.000 sampel |
-| 1.4 | `Core/Profile.luau`: ProfileService key terpecah `core`/`heroes_N`/`archive_N`/`replays`/`mail`, `schemaVersion`, `Core/Migrate.luau` dengan tabel migrasi v1→v2 dummy | test migrasi: profil v1 → v2 tanpa kehilangan field; `JSONEncode` hero dummy ≤900 byte |
-| 1.5 | `Data/Strings.luau` awal: semua string [K] dari DESAIN_SISTEM_V0 §5–§6 dan DESAIN_AI_NPC §7.2, dengan placeholder `{name}` `{stars}` `{party}`; util `Strings.format(id, tbl)` | test: setiap id punya placeholder yang bisa diisi; tidak ada string duplikat |
+| 1.3 | `Shared/Rng.luau`: RNG berseed deterministik xoshiro128** pure Luau dengan API ala `Random` (`NextNumber`, `NextInteger`, `NextUInt32`) — tidak membungkus `Random.new` agar stabil lintas versi engine & jalan headless; `derive(seed, ...parts)` → sub-seed stabil (hash string) | test: 2 run seed sama → 1.000 angka identik; sub-seed `(profile, hero, day, slot)` tidak bertabrakan pada 100.000 sampel |
+| 1.4 | `Core/Profile.luau`: ProfileStore key terpecah `core`/`heroes_N`/`archive_N`/`replays`/`mail`, `schemaVersion`, `Core/Migrate.luau` dengan tabel migrasi v1→v2 dummy | test migrasi: profil v1 → v2 tanpa kehilangan field; `JSONEncode` hero dummy ≤900 byte |
+| 1.5 | `Data/Strings.luau` awal (tabel murni): semua string [K] dari DESAIN_SISTEM_V0 §5–§6 dan DESAIN_AI_NPC §7.2 (teks utuh string yang terpotong: `docs/Data_Strings_K_Lengkap.md`; teks NONKANON: `docs/Data_Strings_NONKANON.md`), dengan placeholder `{name}` `{stars}` `{party}`; util `Strings.format(id, tbl)` di `Shared/Strings.luau` (Data wajib tanpa logika) | test: setiap id punya placeholder yang bisa diisi; tidak ada string duplikat |
 | 1.6 | `docs/sheet_format.md` + `tools/sheet2luau.py`: format `sheet.json` artist (slot, kanvas 192×256 / 48×64, jangkar, 12 frame) → menghasilkan `Data/AppearanceData.luau` & `SpriteData.luau` dari contoh dummy | skrip jalan pada contoh; output Luau valid |
 
 ### Minggu 2 — M0 inti: data, sifat, kebutuhan, stres (DESAIN_AI_NPC §1–§2)
@@ -102,8 +102,8 @@ Setiap baris = satu sesi Claude Code yang bisa selesai dalam 1–3 jam. "Verifik
 |---|---|---|
 | 5.1 | `Data/SummonData.luau`, `Data/HeroData.luau` (cap 10/20/40, exp 10×Lv, growth band, status effect %, generator nama wuxia), `Data/GiftData.luau` minimal | tabel murni; nilai kanon bertanda [K]/[N] di komentar |
 | 5.2 | `Summon/Summon.luau`: 2 jenis + tiket, odds dari data (4★ <1 %, 5★ 0,1 %), label grade, Bond/Enmity summon → slot kanon (Relations) | test 10.000 roll ±0,5 % per ★; bond terjadi pada consecutive draw dengan p data |
-| 5.3 | `Hero/Hero.luau`: `Hero.new(rng, star)` memanggil `Traits.roll` + roll record tampilan `{rig, layers, tints×5}`; status window kanon; `Hero/Appearance.luau` | test: 1.000 appearance dirakit dari `AppearanceData` dummy tanpa layer hilang; `JSONEncode(hero)` ≤900 byte **termasuk `npc`** — bila gagal, pindahkan `rl` ke key `social_N` (DESAIN_AI_NPC §10.5) dan catat |
-| 5.4 | `Core/Save.luau`: simpan/muat hero ke `heroes_N`, autosave ≥60 s, penulisan `mail` & `replays`; uji kill-server | test: matikan sesi saat roll → tanpa data-loss (ProfileService session lock) |
+| 5.3 | `Hero/Hero.luau`: `Hero.new(rng, star)` memanggil `Traits.roll` + roll record tampilan `{rig, layers, tints×5}`; status window kanon; `Hero/Appearance.luau` | test: 1.000 appearance dirakit dari `AppearanceData` dummy tanpa layer hilang; `JSONEncode(hero)` ≤900 byte **termasuk `npc`** — bila gagal, pindahkan `rl` (dan bila perlu `mm`) ke key `social_N` (DESAIN_AI_NPC §1.6, §10.2 #2) dan catat |
+| 5.4 | `Core/Save.luau`: simpan/muat hero ke `heroes_N`, autosave ≥60 s, penulisan `mail` & `replays`; uji kill-server | test: matikan sesi saat roll → tanpa data-loss (session lock ProfileStore) |
 
 ### Minggu 6 — M1 catch-up + M4 inti + placeholder UI (RENCANA §3.2, §4 M4)
 | # | Tugas | Verifikasi |
@@ -127,6 +127,8 @@ Wajib (dibaca Claude Code):
 1. `DESAIN_AI_NPC_V0.md`
 1a. `RISET_NPC_Bukti_Perilaku_Kanon.md` (rujukan BK-n #m yang dipakai DESAIN_AI_NPC)
 1b. `RISET_NPC_Psikologi_Manusia.md` (dasar rumus; baca bagian "Untuk simulasi" saja bila waktu terbatas)
+1c. `Data_Strings_NONKANON.md` (teks 10 id NONKANON + template kartu memorial untuk `Data/Strings.luau`)
+1d. `Data_Strings_K_Lengkap.md` (teks utuh 9 string [K] yang terpotong di DESAIN_SISTEM)
 2. `DESAIN_SISTEM_V0.md` (§0–§6 wajib; §7–§10 rujukan)
 3. `RENCANA_Build_Hibrida.md` (§2–§3)
 4. `BRIEF_SCRIPTER_M2_M3.md` (§3 kontrak antarmuka saja — salin §3 ke `docs/INTERFACE_M1_M2.md`)
@@ -136,5 +138,6 @@ Wajib (dibaca Claude Code):
 
 Tidak disalin: KANON_PMU_* (terlalu besar; DESAIN & RISET_NPC_Bukti sudah memuat sitasi), KONSEP, KALIBRASI, BRIEF_VENDOR, BRIEF_ASET, FORM, TAHAPAN, log.
 
-Berkas keluaran repo yang harus dibawa balik ke Project Knowledge oleh pemilik (aturan A1): `docs/STATUS.md` (tiap minggu), `docs/npc_calibration.md` (setelah 4.4), `Data/NpcData.luau` (sebagai teks, setelah kalibrasi).
+**Sinkron `docs/`:** setiap kali berkas di daftar ini berubah di Project Knowledge, chat Cowork menyebutkan berkas mana yang harus diganti di `docs/` (daftar terkini di `STATUS_Tahap0.md` bagian "Sinkron docs/").
 
+Berkas keluaran repo yang harus dibawa balik ke Project Knowledge oleh pemilik (aturan A1): `docs/STATUS.md` (tiap minggu), `docs/npc_calibration.md` (setelah 4.4), `Data/NpcData.luau` (sebagai teks, setelah kalibrasi).
