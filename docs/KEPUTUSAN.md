@@ -16,3 +16,14 @@ Dicatat oleh Claude Code dari balasan pemilik/Cowork. Keputusan di sini tidak di
 | 2026-09-25 | Laporan wk1 #10 | Paket Wally tidak di-vendor; di cloud pakai runner Lune | pemilik |
 | 2026-09-25 | Laporan wk1 #11 | Nama proyek "Grow a Cultivator" | pemilik |
 | 2026-09-25 | Alur kerja | Laporan di `docs/laporan/`, pertanyaan format Qn, log ini, alur `docs/ALUR_SYNC.md` | pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q1 | Idiosinkrasi: kategori tetap; angka "2–4" dihapus dari docs (DESAIN §1.4 kini "5–7 item dari 6 kategori") | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q2 | `fd = {fav, hated}` (makanan favorit & dibenci) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q3 | Opsi C: leader = skor efikasi tertinggi di klik, faksi hanya bila skor itu ≥ persentil 80 skor efikasi seluruh hero di lantai yang sama (TERBUKA, kalibrasi 4.4) — agar cabang "tanpa leader → sinisme" §4.6 bisa terjadi | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q4 | Likeability awal saat summon = 50 (netral, TERBUKA) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q5 | Besar puncak duka kedua (§6.10) ditunda ke tugas 4.2/kalibrasi | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q6 | Makan bersama: food +3 dan rel +3 (bacaan harfiah tabel) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q7 | Koefisien §5.1, §8.1, §8.2 tetap di NpcData | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q8 | Opsi B: `NpcData` & `IdioData` dipindah ke `ServerStorage/Data` (tidak ter-replikasi ke klien; cegah datamine rumus refusal/sudden death) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q9 | Packing relasi: docs dikoreksi menjadi "≤28 bit" | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q10 | Brief 2.3 dikoreksi mengikuti DESAIN §2.2 (kontinum `40 + 0,6·X`) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-25 Q11 | 4 string [K] ch.65 ditambahkan ke Data_Strings_K_Lengkap #10–#13 (FLOOR_ASSIGN_PARTY, FLOOR_ASSIGN_NAMES, FLOOR_ASSIGN_REST, ROOM_HEADCOUNT); catatan #9 dikoreksi | Cowork/pemilik |

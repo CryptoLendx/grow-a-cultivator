@@ -1,9 +1,9 @@
 --!strict
 -- Data/NpcData + Data/IdioData (tugas §B 2.1): tabel murni, lengkap, dan angka cocok DESAIN_AI_NPC_V0.
 -- Bentuk `Linear` = k + Σ koef·variabel; diuji di titik ujung yang disebut docs agar transkripsi rumus terjaga.
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local NpcData = require(ReplicatedStorage.Data.NpcData)
-local IdioData = require(ReplicatedStorage.Data.IdioData)
+local ServerStorage = game:GetService("ServerStorage")
+local NpcData = require(ServerStorage.Data.NpcData)
+local IdioData = require(ServerStorage.Data.IdioData)
 
 type Linear = NpcData.Linear
 type Product = NpcData.Product
@@ -220,6 +220,7 @@ return function()
 			near(prod(sd.p, { vul = 0, ld = 0 }), 0.03)
 			near(prod(sd.p, { vul = 100, ld = 100 }), 0.12)
 			expect(NpcData.likeability.up.giftMatch).to.equal(8)
+			expect(NpcData.likeability.initial).to.equal(50)
 			expect(NpcData.likeability.down.greatlyDisappointed).to.equal(-20)
 			expect(NpcData.moralInjury.guiltMin).to.equal(15)
 			expect(NpcData.moralInjury.guiltMax).to.equal(30)
@@ -240,6 +241,7 @@ return function()
 			near(lin(r.focus, { X = 100 }), 0.4)
 			expect(NpcData.mentor.skillMultMax).to.equal(10)
 			expect(NpcData.groups.factionGrvMin).to.equal(60)
+			expect(NpcData.groups.leaderFloorPercentile).to.equal(80)
 			near(lin(NpcData.groups.leaderScore, { X = 100, star = 1, level = 1, rReceived = 0 }), 40 + 4.5 + 0.3)
 		end)
 

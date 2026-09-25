@@ -194,6 +194,7 @@ export type NpcConfig = {
 	likeability: {
 		min: number,
 		max: number,
+		initial: number,
 		up: { [string]: number },
 		down: { [string]: number },
 		giftMaxSt: number,
@@ -275,6 +276,7 @@ export type NpcConfig = {
 		cliqueMin: number,
 		factionGrvMin: number,
 		leaderScore: Linear,
+		leaderFloorPercentile: number,
 		identityShareMin: number,
 		cynicismTrainingMult: number,
 		punishedGrv: number,
@@ -722,7 +724,7 @@ local NpcData: NpcConfig = {
 	likeability = {
 		min = 0, -- skala 0–100
 		max = 100, -- skala 0–100
-		-- nilai awal likeability tidak disebut di DESAIN_AI_NPC → TERBUKA, ditetapkan di M1/M7 (tidak dikarang di sini)
+		initial = 50, -- TERBUKA: nilai awal saat summon, netral (LAPORAN 2026-09-25 Q4)
 		up = {
 			giftMatch = 8, -- TERBUKA: hanya saat st < giftMaxSt [K] ch.51
 			strikeAccepted = 10, -- TERBUKA [K] ch.52
@@ -843,8 +845,9 @@ local NpcData: NpcConfig = {
 		cliqueA = 3, -- TERBUKA: … & a ≥ 3 dua arah …
 		cliqueMin = 3, -- TERBUKA: … dengan ≥3 anggota
 		factionGrvMin = 60, -- TERBUKA: rata-rata grv klik ≥ 60
-		-- TERBUKA: ambang "skor leader tinggi" TIDAK diberi angka di §4.6 → diputuskan di tugas 3.2 / kalibrasi §9.
+		-- leader = skor efikasi tertinggi di klik, sah bila ≥ persentil `leaderFloorPercentile` skor seluruh hero lantai itu (Q3 opsi C)
 		leaderScore = { k = 0, X = 0.4, star = 4.5, level = 0.3, rReceived = 0.3 }, -- TERBUKA: 0,4·X + 0,3·(★·15 + level) + 0,3·Σr diterima
+		leaderFloorPercentile = 80, -- TERBUKA: kalibrasi 4.4 (LAPORAN 2026-09-25 Q3)
 		identityShareMin = 0.5, -- TERBUKA: ≥50 % anggota berbagi tag/lantai
 		cynicismTrainingMult = 0.7, -- TERBUKA: sinisme → latihan −30 %
 		punishedGrv = 10, -- TERBUKA: ringleader dihukum → grv semua anggota +10
@@ -943,7 +946,7 @@ local NpcData: NpcConfig = {
 			},
 			-- makan bersama (ringan) [N] ch.22 — syarat: Restaurant
 			eatTogether = {
-				gain = { food = 3, rel = 3 }, -- TERBUKA: tabel "food, rel +3" dibaca +3 keduanya (ASUMSI)
+				gain = { food = 3, rel = 3 }, -- TERBUKA: "food, rel +3" = +3 keduanya (LAPORAN 2026-09-25 Q6)
 				bias = { k = 0, X = 0.3 }, -- TERBUKA
 				params = { tablemateA = 1 }, -- TERBUKA: a +1 rekan meja
 				social = true,

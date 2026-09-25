@@ -93,6 +93,11 @@ local Strings: { [string]: string } = {
 	GIFT_GREATLY_DISAPPOINTED = "['{name} ({stars})' is greatly disappointed after receiving the '{item}'.]", -- [K] ch.107 (diikuti LIKE_DROP)
 	TIPS_REST = "[Tips/Continuous battles tire the hero. You need to take proper rest...]", -- [K] ch.8 ("..." ada di sumber kanon)
 	FAIL_LAST_CHANCE = "[If you fail this time, all heroes belonging to '{party}' will be destroyed...]", -- [K] ch.167 ("..." di sumber; didahului [※Caution!] [This is your last chance.]; loop chances [V1+])
+	-- Data_Strings_K_Lengkap.md #10–#13: pengumuman penempatan lantai ch.65 (LAPORAN 2026-09-25 Q11); urutan tampil #13 → #10 → #11 → #12
+	ROOM_HEADCOUNT = "[Currently, there are {n} people in the waiting room... Master's instructions are...]", -- [K] ch.65 ("..." ada di sumber)
+	FLOOR_ASSIGN_PARTY = "[{party} is all on the {floor} floor...]", -- [K] ch.65 (ASUMSI: {party}/{floor} ordinal Inggris, mis. "1st party", "2nd"; "..." di sumber)
+	FLOOR_ASSIGN_NAMES = "[{names}. You guys are also on the {floor} floor.]", -- [K] ch.65 ({names} dipisah spasi tanpa bintang; ASUMSI: {floor} bebas bentuk)
+	FLOOR_ASSIGN_REST = "[Everything else is on the {floor} floor.]", -- [K] ch.65
 
 	-- Data_Strings_NONKANON.md §1–§10: varian per id; pilih lewat variantIndex = hash(heroId, kind, hb) mod n
 	STEAL_1 = "['{name} ({stars})' was caught taking '{item}' without permission.]", -- NONKANON
