@@ -11,7 +11,7 @@ export type PartyId = string -- ASUMSI: id party berupa string
 export type Appearance = {
 	rig: string, -- id rig (kombinasi kelas × gender) di AppearanceData
 	layers: { [string]: string }, -- slot → layerId di AppearanceData
-	tints: {
+	tints: { -- 5 kanal tint (VISUAL_2D §5 "tint ×5"), diterapkan via ImageColor3 pada lapisan grayscale
 		skin: number, -- ASUMSI: indeks palet tint kulit di AppearanceData
 		hair: number, -- ASUMSI: indeks palet tint rambut
 		primary: number, -- ASUMSI: indeks palet warna utama pakaian
@@ -71,6 +71,7 @@ export type HiddenInput = {
 	bondWith: { HeroId }, -- hero yang berflag Bond/Sumpah/mentor dengannya
 	enmityWith: { HeroId }, -- hero yang berflag Enmity dengannya
 	compatibility: { [HeroId]: number }, -- kompatibilitas ke anggota party sama
+	hesitation: number, -- 0..1 (TERBUKA): peluang tambahan menunda serangan 1 tick vs target EnemyData.isHumanoid; terpisah dari fear/panic
 }
 
 export type HeroInput = {
@@ -122,6 +123,12 @@ export type EventLine = {
 	heroId: HeroId?, -- hero yang terlibat, bila ada
 }
 
+-- Satu episode masuk status takut selama misi (dasar habituasi/sensitisasi `xp`, DESAIN_AI_NPC §1.2a/§8.2).
+export type PanicEvent = {
+	kind: "fear" | "panic" | "despair", -- status yang dimasuki
+	timeSec: number, -- detik sejak misi mulai saat hero masuk status itu
+}
+
 export type HeroResult = {
 	alive: boolean, -- hidup di akhir misi
 	deathCause: string?, -- sebab mati, bila mati
@@ -133,6 +140,8 @@ export type HeroResult = {
 	equipmentLost: boolean, -- gear hilang (hero mati)
 	skillUses: { [string]: number }, -- skillId → jumlah pakai
 	awakeningEvents: { string }, -- skillId yang mengalami Skill Awakening
+	panicEvents: { PanicEvent }, -- tiap kali hero MASUK fear/panic/despair, urut waktu; kosong bila tidak pernah
+	minHpPct: number, -- HP terendah selama misi, persen 0–100 (<30 = selamat dari situasi kritis)
 }
 
 export type MissionResult = {
