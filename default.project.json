@@ -25,6 +25,7 @@
     },
     "ServerStorage": {
       "$className": "ServerStorage",
+      "$path": "src/ServerStorage",
       "Tests": {
         "$path": "tests"
       }

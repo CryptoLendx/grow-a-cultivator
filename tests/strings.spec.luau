@@ -86,6 +86,21 @@ return function()
 			)
 		end)
 
+		it("4 string [K] ch.65 Data_Strings_K_Lengkap #10–#13 verbatim", function()
+			expect(Strings.format("FLOOR_ASSIGN_PARTY", { party = "1st party", floor = "2nd" })).to.equal(
+				"[1st party is all on the 2nd floor...]"
+			)
+			expect(
+				Strings.format("FLOOR_ASSIGN_NAMES", { names = "Chloe Enoch Alter Patrick Amarin", floor = "second" })
+			).to.equal("[Chloe Enoch Alter Patrick Amarin. You guys are also on the second floor.]")
+			expect(Strings.format("FLOOR_ASSIGN_REST", { floor = "first" })).to.equal(
+				"[Everything else is on the first floor.]"
+			)
+			expect(Strings.format("ROOM_HEADCOUNT", { n = 35 })).to.equal(
+				"[Currently, there are 35 people in the waiting room... Master's instructions are...]"
+			)
+		end)
+
 		it("varian NONKANON lengkap _1.._n sesuai Data_Strings_NONKANON.md", function()
 			local counts: { [string]: number } = {
 				STEAL = 5,

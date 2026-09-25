@@ -38,13 +38,12 @@ local IdioData: IdioConfig = {
 		secondChance = 0.4, -- TERBUKA: goal kedua di-roll 40 %
 	},
 
-	-- §1.4 jumlah item per kategori (id = {gf={..}, gd, fd, hb, hab, av?}, §1.6).
-	-- CATATAN: §1.4 menyebut "2–4 idiosinkrasi per hero" tetapi daftar kategori di bawah berjumlah 5–7 → TERBUKA, tanya pemilik.
+	-- §1.4 jumlah item per kategori (id = {gf={..}, gd, fd={fav,hated}, hb, hab, av?}, §1.6); kategori tetap (LAPORAN 2026-09-25 Q1).
 	counts = {
 		giftFav = { min = 1, max = 2 }, -- TERBUKA: gift favorit ×1–2 [K] ch.51
 		giftHated = { min = 1, max = 1 }, -- TERBUKA: gift dibenci ×1 [K] ch.107, 135
 		foodFav = { min = 1, max = 1 }, -- TERBUKA: makanan favorit ×1 [K] ch.64
-		foodHated = { min = 1, max = 1 }, -- TERBUKA: makanan dibenci ×1 [K] ch.16 (ASUMSI: §1.6 hanya punya satu field `fd`)
+		foodHated = { min = 1, max = 1 }, -- TERBUKA: makanan dibenci ×1 [K] ch.16 (fd = {fav, hated}, Q2)
 		hobby = { min = 1, max = 1 }, -- TERBUKA: hobi ×1
 		habit = { min = 1, max = 1 }, -- TERBUKA: kebiasaan ×1 [INF]
 		aversion = { min = 0, max = 1 }, -- TERBUKA: keengganan ×0–1
