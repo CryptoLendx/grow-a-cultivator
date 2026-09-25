@@ -36,6 +36,12 @@ Lihat `docs/RENCANA_Build_Hibrida.md` §2 (peta folder). `Data/AutonomyData.luau
 4. Tulis 3–6 baris ringkasan hasil + angka test ke `docs/STATUS.md` (satu baris per commit; pemilik menyalin ke Project Knowledge).
 5. Jangan menyentuh berkas di luar tugas; jangan "merapikan" kode lama.
 
+## Sinkron dengan Claude Cowork (`docs/ALUR_SYNC.md`)
+- Awal sesi: baca `docs/KEPUTUSAN.md`; keputusan di sana tidak ditanyakan ulang.
+- Akhir sesi: tulis `docs/laporan/LAPORAN_SESI_<YYYY-MM-DD>_wkN.md` (7 bagian), commit + push, lalu beri pemilik tautan laporan + satu prompt pendek untuk Cowork.
+- Pertanyaan hanya untuk keputusan milik pemilik, format `Qn` + opsi + rekomendasi default; hal yang jelas dari docs dikerjakan dan dicatat sebagai ASUMSI.
+- Balasan `Qn: …` dari pemilik/Cowork dicatat ke `docs/KEPUTUSAN.md` sebelum tugas baru dimulai.
+
 ## Jangan
 - Jangan menyimpan gambar hero gabungan; hanya record `{rig, layers, tints}`.
 - Jangan autosave < 60 detik atau menulis key >2 MB.
