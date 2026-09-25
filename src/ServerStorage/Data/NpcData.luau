@@ -77,6 +77,7 @@ export type NpcConfig = {
 		ids: { string },
 		min: number,
 		max: number,
+		initial: number,
 		rest: {
 			decay: number,
 			trainingMult: Linear,
@@ -123,6 +124,8 @@ export type NpcConfig = {
 	},
 	stress: {
 		vul: Linear,
+		initialSt: number,
+		initialLd: number,
 		vulPerIntimateLoss: number,
 		breakThreshold: Linear,
 		recoverBase: Product,
@@ -594,6 +597,7 @@ local NpcData: NpcConfig = {
 		ids = { "rest", "food", "aut", "cmp", "rel" },
 		min = 0, -- skala 0–100
 		max = 100, -- skala 0–100
+		initial = 50, -- ASUMSI: docs tidak menyebut nilai awal saat summon; netral seperti likeability awal (LAPORAN 2026-09-26b Q2). rel awal = max(ini, lantai sendiri)
 		rest = {
 			decay = -8, -- TERBUKA
 			trainingMult = { k = 1, C = 0.003 }, -- TERBUKA: ×(1 + 0,3·C/100) bila berlatih
@@ -642,6 +646,8 @@ local NpcData: NpcConfig = {
 	-- §3.2–§3.3 stres (diatesis–stres + allostatic load).
 	stress = {
 		vul = { k = 50, E = 0.5, cou = -0.3, C = -0.2 }, -- TERBUKA: 0,5·E + 0,3·(100−cou) + 0,2·(100−C) (cou genetik)
+		initialSt = 0, -- ASUMSI: hero baru tanpa stres (docs tidak menyebut)
+		initialLd = 0, -- ASUMSI: allostatic load mulai 0 (akumulator)
 		vulPerIntimateLoss = 3, -- TERBUKA: tiap kehilangan ikatan intim, permanen-ish
 		breakThreshold = { k = 90, vul = -0.3, ld = -0.2 }, -- TERBUKA: 90 − 0,3·vul − 0,2·ld
 		recoverBase = { base = 4, factors = { { k = 1.4, vul = -0.008 }, { k = 1, xp = 0.002 } } }, -- TERBUKA: 4·(0,6 + (100−vul)/100·0,8)·(1 + 0,2·xp/100)
