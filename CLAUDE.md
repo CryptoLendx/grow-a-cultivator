@@ -1,4 +1,4 @@
-# Raise a Cultivator — Roblox (Rojo) — CLAUDE.md
+# Grow a Cultivator — Roblox (Rojo) — CLAUDE.md
 
 ## Apa proyek ini
 Game Roblox gacha-simulation tema wuxia, 100 % mekanik kanon novel "Pick Me Up". 2D landscape tampak 3/4 isometrik (sprite berlapis), mobile-first. Pemain = Master; hero = NPC otonom dengan sifat/kebutuhan/relasi (simulasi, TANPA LLM runtime); permadeath tanpa revive. Spesifikasi lengkap ada di `docs/` — BACA `docs/DESAIN_SISTEM_V0.md` §3, §5, §6 dan `docs/DESAIN_AI_NPC_V0.md` sebelum menyentuh modul terkait. Jangan mendesain ulang: angka bertanda (TERBUKA) diisi default dari docs + komentar `-- TERBUKA`, bukan dikarang.
