@@ -1,4 +1,4 @@
-# Raise a Cultivator — Roblox (Rojo) — CLAUDE.md
+# Grow a Cultivator — Roblox (Rojo) — CLAUDE.md
 
 ## Apa proyek ini
 Game Roblox gacha-simulation tema wuxia, 100 % mekanik kanon novel "Pick Me Up". 2D landscape tampak 3/4 isometrik (sprite berlapis), mobile-first. Pemain = Master; hero = NPC otonom dengan sifat/kebutuhan/relasi (simulasi, TANPA LLM runtime); permadeath tanpa revive. Spesifikasi lengkap ada di `docs/` — BACA `docs/DESAIN_SISTEM_V0.md` §3, §5, §6 dan `docs/DESAIN_AI_NPC_V0.md` sebelum menyentuh modul terkait. Jangan mendesain ulang: angka bertanda (TERBUKA) diisi default dari docs + komentar `-- TERBUKA`, bukan dikarang.
@@ -35,6 +35,12 @@ Lihat `docs/RENCANA_Build_Hibrida.md` §2 (peta folder). `Data/AutonomyData.luau
 3. Implementasi minimal → jalankan test → commit dengan pesan `wkN: <modul>: <apa>`.
 4. Tulis 3–6 baris ringkasan hasil + angka test ke `docs/STATUS.md` (satu baris per commit; pemilik menyalin ke Project Knowledge).
 5. Jangan menyentuh berkas di luar tugas; jangan "merapikan" kode lama.
+
+## Sinkron dengan Claude Cowork (`docs/ALUR_SYNC.md`)
+- Awal sesi: baca `docs/KEPUTUSAN.md`; keputusan di sana tidak ditanyakan ulang.
+- Akhir sesi: tulis `docs/laporan/LAPORAN_SESI_<YYYY-MM-DD>_wkN.md` (7 bagian), commit + push, lalu beri pemilik tautan laporan + satu prompt pendek untuk Cowork.
+- Pertanyaan hanya untuk keputusan milik pemilik, format `Qn` + opsi + rekomendasi default; hal yang jelas dari docs dikerjakan dan dicatat sebagai ASUMSI.
+- Balasan `Qn: …` dari pemilik/Cowork dicatat ke `docs/KEPUTUSAN.md` sebelum tugas baru dimulai.
 
 ## Jangan
 - Jangan menyimpan gambar hero gabungan; hanya record `{rig, layers, tints}`.

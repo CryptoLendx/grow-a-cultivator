@@ -6,6 +6,7 @@ local Types = require(ReplicatedStorage.Shared.Types)
 type HeroInput = Types.HeroInput
 type MissionRequest = Types.MissionRequest
 type MissionResult = Types.MissionResult
+type HeroResult = Types.HeroResult
 
 return function()
 	describe("Shared/Types", function()
@@ -26,6 +27,7 @@ return function()
 					bondWith = {},
 					enmityWith = {},
 					compatibility = { h2 = 0.5 },
+					hesitation = 0,
 				},
 				appearance = {
 					rig = "warrior_m",
@@ -53,23 +55,25 @@ return function()
 				cheeringEnabled = false,
 				mode = "headless",
 			}
+			-- Dideklarasikan terpisah: literal di dalam map `{ [HeroId]: HeroResult }` tidak dicek field yang hilang.
+			local h1Result: HeroResult = {
+				alive = true,
+				damageDealt = 10,
+				damageTaken = 3,
+				contribution = 1,
+				statusEffectsEnd = {},
+				consumablesUsed = { LowLifePotion = 1 },
+				equipmentLost = false,
+				skillUses = { LesserSwordsmanship = 4 },
+				awakeningEvents = {},
+				panicEvents = { { kind = "fear", timeSec = 12.5 }, { kind = "panic", timeSec = 20 } },
+				minHpPct = 28,
+			}
 			local result: MissionResult = {
 				outcome = "clear",
 				durationSec = 60,
 				objectiveFinal = request.floor.objective,
-				heroes = {
-					h1 = {
-						alive = true,
-						damageDealt = 10,
-						damageTaken = 3,
-						contribution = 1,
-						statusEffectsEnd = {},
-						consumablesUsed = { LowLifePotion = 1 },
-						equipmentLost = false,
-						skillUses = { LesserSwordsmanship = 4 },
-						awakeningEvents = {},
-					},
-				},
+				heroes = { h1 = h1Result },
 				mvpHeroId = "h1",
 				expEligibleHeroIds = { "h1" },
 				rewardGold = 7000,
@@ -79,6 +83,7 @@ return function()
 			}
 			expect(result.heroes.h1.alive).to.equal(true)
 			expect(#request.parties[1].heroes).to.equal(1)
+			expect(result.heroes.h1.panicEvents[2].kind).to.equal("panic")
 		end)
 	end)
 end

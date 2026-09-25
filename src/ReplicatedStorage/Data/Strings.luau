@@ -1,6 +1,7 @@
 --!strict
 -- SEMUA pesan sistem (EN, verbatim kanon). Tabel murni id → teks; format lewat Shared/Strings.
 -- Sumber: DESAIN_AI_NPC_V0 §7.3 (diutamakan bila ada dua versi) + DESAIN_SISTEM_V0 §5–§6.
+-- Teks utuh [K] yang terpotong: docs/Data_Strings_K_Lengkap.md; varian NONKANON: docs/Data_Strings_NONKANON.md.
 -- Placeholder: {name} {stars} {party} {a} {sa} {b} {sb} {item} {n} … ('X'/'Party 1' di sumber).
 -- String non-kanon diberi komentar -- NONKANON.
 
@@ -22,9 +23,7 @@ local Strings: { [string]: string } = {
 	REQ_FACILITY = "[Master hero '{name} ({stars})' requests the '{facility}' facility!]", -- [K] ch.244
 	REQ_RETREAT = "[Master hero '{name} ({stars})' requests to retreat from the field!]", -- [K] ch.235
 	ARCHIVE_DONE = "[The archive is complete! You can look back on the heroes who left in the arms of the goddess.]", -- [K] ch.79
-	GRIEF_VISIT = "['{name}' spent the evening at the archive, in front of '{deceased}'s belongings.]", -- NONKANON
-	MENTIONS_DECEASED = "['{name}' mentioned '{deceased}' again today.]", -- NONKANON (id §7.2; contoh §7.3 menyebut MENTIONS_DEAD)
-	EXTORT = "['{a}' took '{item}' from '{b}' by force.]", -- NONKANON
+	EXTORT = "['{a}' took '{item}' from '{b}' by force.]", -- NONKANON (bentuk contoh §7.3 tanpa bintang; varian lengkap EXTORT_n)
 
 	-- DESAIN_SISTEM_V0 §5.1 waiting room
 	SPACETIME_OPEN = "[Open the space-time!]", -- [K] ch.7
@@ -83,6 +82,66 @@ local Strings: { [string]: string } = {
 	PARTY_OPERATIONAL = "['{party}' has become operational.]", -- [K] ch.52
 	CHANGED_MIND = "[Excellent Master. The hero has changed his mind!]", -- [K] ch.52
 	SKILL_AWAKENING = "[Heroes' souls awaken in critical situations!]\n[Skill Awakening!]", -- [K] ch.20, 140
+
+	-- Data_Strings_K_Lengkap.md: teks utuh 9 string [K] yang terpotong di DESAIN_SISTEM_V0
+	FACILITY_BUILT = "[The {facility} has been completed!]", -- [K] ch.24 (ASUMSI: pola ch.24 sebagai template; ch.8 terpotong di sumber)
+	FACILITY_MANAGER = "[Manager in charge: {names}]", -- [K] ch.64 ({names} = '{name}({stars})' dipisah spasi, maks 2)
+	FOOD_TYPES = "[Possible food types: {foods}....]", -- [K] ch.64 ("...." empat titik ada di sumber kanon)
+	BUSINESS_REPORT = "[A business report has been received from Submaster '{name}({stars})'. Do you want to check?]\n[Yes (optional) / No]", -- [K] ch.268
+	PARTY_INSUFFICIENT = "[If the number of party members is insufficient, use paid summons or free summons to recruit heroes!]", -- [K] ch.114, 274
+	REQ_MOCK_BATTLE = "[Master '{name}({stars})' proposes a mock battle. Do you accept it?]", -- [K] ch.148, 166 ("Master" = gelar hero)
+	GIFT_GREATLY_DISAPPOINTED = "['{name} ({stars})' is greatly disappointed after receiving the '{item}'.]", -- [K] ch.107 (diikuti LIKE_DROP)
+	TIPS_REST = "[Tips/Continuous battles tire the hero. You need to take proper rest...]", -- [K] ch.8 ("..." ada di sumber kanon)
+	FAIL_LAST_CHANCE = "[If you fail this time, all heroes belonging to '{party}' will be destroyed...]", -- [K] ch.167 ("..." di sumber; didahului [※Caution!] [This is your last chance.]; loop chances [V1+])
+
+	-- Data_Strings_NONKANON.md §1–§10: varian per id; pilih lewat variantIndex = hash(heroId, kind, hb) mod n
+	STEAL_1 = "['{name} ({stars})' was caught taking '{item}' without permission.]", -- NONKANON
+	STEAL_2 = "['{name} ({stars})' took '{item}' from the storage. The theft has been discovered.]", -- NONKANON
+	STEAL_3 = "[Missing item reported: '{item}'. Investigation points to '{name} ({stars})'.]", -- NONKANON
+	STEAL_4 = "['{name} ({stars})' quietly pocketed '{item}' belonging to '{other}'.]", -- NONKANON
+	STEAL_5 = "['{other}' noticed that '{item}' was missing. '{name} ({stars})' is the likely culprit.]", -- NONKANON
+
+	EXTORT_1 = "['{name} ({stars})' took '{item}' from '{other} ({os})' by force.]", -- NONKANON
+	EXTORT_2 = "['{name} ({stars})' demanded payment from '{other} ({os})'. The demand was not refused.]", -- NONKANON
+	EXTORT_3 = "['{other} ({os})' has been extorted by '{name} ({stars})'.]", -- NONKANON
+	EXTORT_4 = "['{name} ({stars})' pressured '{other} ({os})' into handing over '{item}'.]", -- NONKANON
+
+	PROVOKE_1 = "['{name} ({stars})' provoked '{other} ({os})' during training.]", -- NONKANON
+	PROVOKE_2 = "['{name} ({stars})' and '{other} ({os})' exchanged sharp words.]", -- NONKANON
+	PROVOKE_3 = "['{name} ({stars})' openly mocked '{other} ({os})' in front of the party.]", -- NONKANON
+	PROVOKE_4 = "[Tension is rising between '{name} ({stars})' and '{other} ({os})'.]", -- NONKANON
+
+	WENT_ALONE_1 = "['{name} ({stars})' went out alone. No one saw which direction.]", -- NONKANON
+	WENT_ALONE_2 = "['{name} ({stars})' left the waiting room without a word.]", -- NONKANON
+	WENT_ALONE_3 = "['{name} ({stars})' has not been seen since yesterday. Some believe it was intentional.]", -- NONKANON
+	WENT_ALONE_4 = "[Master hero '{name} ({stars})' departed on their own initiative.]", -- NONKANON
+
+	DECLINED_POSITION_1 = "['{name} ({stars})' declined the offer to become '{position}'.]", -- NONKANON
+	DECLINED_POSITION_2 = "['{name} ({stars})' asked to remain a frontline fighter instead of taking '{position}'.]", -- NONKANON
+	DECLINED_POSITION_3 = "[The position of '{position}' was offered to '{name} ({stars})' and turned down.]", -- NONKANON
+
+	GRIEF_VISIT_1 = "['{name}' spent the evening at the archive, in front of '{deceased}'s belongings.]", -- NONKANON
+	GRIEF_VISIT_2 = "['{name}' sat alone near '{deceased}'s memorial for a long while.]", -- NONKANON
+	GRIEF_VISIT_3 = "['{name}' visited the archive again today.]", -- NONKANON
+	GRIEF_VISIT_4 = "['{name}' held '{item}' and said nothing.]", -- NONKANON
+	GRIEF_VISIT_5 = "['{name}' returned to the place where '{deceased}' was last seen.]", -- NONKANON
+
+	MENTIONS_DECEASED_1 = "['{name}' mentioned '{deceased}' again today.]", -- NONKANON
+	MENTIONS_DECEASED_2 = "['{name}' brought up '{deceased}' during a quiet moment.]", -- NONKANON
+	MENTIONS_DECEASED_3 = "['{name}' still speaks of '{deceased}' from time to time.]", -- NONKANON
+	MENTIONS_DECEASED_4 = "[Something reminded '{name}' of '{deceased}' today.]", -- NONKANON
+
+	BOND_NAMED_1 = "['{a}' and '{b}' have started calling their bond '{bond}'.]", -- NONKANON
+	BOND_NAMED_2 = "[The bond between '{a}' and '{b}' is now known as '{bond}'.]", -- NONKANON
+	BOND_NAMED_3 = "['{a}' and '{b}' have grown close enough to be remembered as '{bond}'.]", -- NONKANON
+
+	WILL_WRITTEN_1 = "['{name} ({stars})' wrote something in their diary before tomorrow's mission.]", -- NONKANON
+	WILL_WRITTEN_2 = "['{name} ({stars})' left a letter, just in case.]", -- NONKANON
+	WILL_WRITTEN_3 = "['{name} ({stars})' spent the night writing, and said it was nothing important.]", -- NONKANON
+
+	MEMORIAL_CARD_1 = "[A memorial card for '{name} ({stars})' has been prepared.]", -- NONKANON
+	MEMORIAL_CARD_2 = "['{name} ({stars})' is remembered here.]", -- NONKANON
+	MEMORIAL_CARD_3 = "[The archive now holds the record of '{name} ({stars})'.]", -- NONKANON
 }
 
 return Strings
