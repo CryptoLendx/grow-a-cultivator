@@ -60,6 +60,59 @@ return function()
 			end).to.throw("NOT_AN_ID")
 		end)
 
+		it("9 string [K] Data_Strings_K_Lengkap tersedia verbatim", function()
+			local ids = {
+				"FACILITY_BUILT",
+				"FACILITY_MANAGER",
+				"FOOD_TYPES",
+				"BUSINESS_REPORT",
+				"PARTY_INSUFFICIENT",
+				"REQ_MOCK_BATTLE",
+				"GIFT_GREATLY_DISAPPOINTED",
+				"TIPS_REST",
+				"FAIL_LAST_CHANCE",
+			}
+			for _, id in ids do
+				expect(StringsData[id] ~= nil).to.equal(true)
+			end
+			expect(
+				Strings.format(
+					"GIFT_GREATLY_DISAPPOINTED",
+					{ name = "Han", stars = "★★★", item = "White Horse Statue" }
+				)
+			).to.equal("['Han (★★★)' is greatly disappointed after receiving the 'White Horse Statue'.]")
+			expect(Strings.format("FAIL_LAST_CHANCE", { party = "1st party" })).to.equal(
+				"[If you fail this time, all heroes belonging to '1st party' will be destroyed...]"
+			)
+		end)
+
+		it("varian NONKANON lengkap _1.._n sesuai Data_Strings_NONKANON.md", function()
+			local counts: { [string]: number } = {
+				STEAL = 5,
+				EXTORT = 4,
+				PROVOKE = 4,
+				WENT_ALONE = 4,
+				DECLINED_POSITION = 3,
+				GRIEF_VISIT = 5,
+				MENTIONS_DECEASED = 4,
+				BOND_NAMED = 3,
+				WILL_WRITTEN = 3,
+				MEMORIAL_CARD = 3,
+			}
+			local total = 0
+			for base, n in counts do
+				for i = 1, n do
+					expect(StringsData[base .. "_" .. i] ~= nil).to.equal(true)
+				end
+				expect(StringsData[base .. "_" .. (n + 1)]).to.equal(nil)
+				total += n
+			end
+			expect(total).to.equal(38)
+			expect(Strings.format("MENTIONS_DECEASED_1", { name = "Han", deceased = "Mormont" })).to.equal(
+				"['Han' mentioned 'Mormont' again today.]"
+			)
+		end)
+
 		it("string contoh DESAIN_AI_NPC §7.3 tersedia verbatim", function()
 			expect(Strings.format("SUDDEN_DEATH", { name = "Mormont", stars = "★★" })).to.equal(
 				"['Mormont (★★)' has returned to the arms of the goddess. His fighting spirit will be remembered forever.]\n[Sudden death!]\n[Cause – Suicide due to stress]"
