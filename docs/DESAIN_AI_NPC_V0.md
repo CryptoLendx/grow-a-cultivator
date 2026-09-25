@@ -1,6 +1,6 @@
 # DESAIN AI NPC V0 — "M0 KEHENDAK BEBAS NPC": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
 
-Terakhir diperbarui: 26 September 2026, 00:46 WIB
+Terakhir diperbarui: 26 September 2026, 01:16 WIB
 
 ## 0. TUJUAN, SUMBER, CARA MEMBACA
 
@@ -51,7 +51,7 @@ Kanon: Han 1★ takut→panik→"out of panic" di battle pertama (ch.3–4) lalu
 - **Differential susceptibility** [PSI §5]: hero `E ≥ 65` mendapat pengali ×1,5 pada **kedua** arah (habituasi dan sensitisasi) — mereka yang paling rusak oleh master ceroboh dan paling berkembang oleh master yang menjaga pemulihan. Ini yang membuat dua hero dengan roll sama berakhir berbeda tergantung lingkungan (kanon: latihan identik → pertumbuhan beda [K] ch.1).
 - Akibat yang **muncul sendiri** (bukan diatur): 1★ yang selamat 10–15 misi dengan pemulihan akan setenang 3★ segar; 3★ yang dipaksa beruntun bisa jatuh di bawah 1★ yang dirawat. Metrik §9 memverifikasi ini.
 
-**Perubahan sifat (plastisitas lambat):** [PSI §1, Bühler 2024] efek peristiwa hidup pada trait "nyata tapi kecil": geser **0,1–0,3 SD ≈ 2–5 poin**, dan hanya untuk peristiwa besar; sebagian hero tidak bergeser sama sekali (roll 50 %). Kanon: Thragin/Muden belajar "patience, humility and equanimity" selama 60 tahun (BK-3 #52) — perubahan ada, lambat. Peristiwa yang boleh menggeser: kematian ikatan intim (E +3, X −2), sintesis rekan disaksikan (H −2 atau A −2), MVP berulang ≥5× (X +2), menjadi instruktur/mentor 90 hari (A +2, C +2), dihukum (A −3). **Erosi karena isolasi** (kanon Aaron ch.352–353: memori & komitmen "mendingin", identitas terkikis tanpa interaksi): hero tanpa interaksi ternotasi ≥60 hari → E +1 per 30 hari, memori tertua non-kunci terhapus 2× lebih cepat, `O` −1 per 60 hari; pulih hanya lewat interaksi (§4.3). Yang berubah cepat = **keadaan** (§2–§3), bukan sifat.
+**Perubahan sifat (plastisitas lambat):** [PSI §1, Bühler 2024] efek peristiwa hidup pada trait "nyata tapi kecil": geser **0,1–0,3 SD ≈ 2–5 poin**, dan hanya untuk peristiwa besar; sebagian hero tidak bergeser sama sekali (roll 50 % **per hero**, tetap seumur hidup, diturunkan dari `profileSeed`+`heroId` tanpa byte tambahan — bukan roll per peristiwa; LAPORAN 2026-09-26 Q2). Kanon: Thragin/Muden belajar "patience, humility and equanimity" selama 60 tahun (BK-3 #52) — perubahan ada, lambat. Peristiwa yang boleh menggeser: kematian ikatan intim (E +3, X −2), sintesis rekan disaksikan (H −2 atau A −2), MVP berulang ≥5× (X +2), menjadi instruktur/mentor 90 hari (A +2, C +2), dihukum (A −3). **Erosi karena isolasi** (kanon Aaron ch.352–353: memori & komitmen "mendingin", identitas terkikis tanpa interaksi): hero tanpa interaksi ternotasi ≥60 hari → E +1 per 30 hari, memori tertua non-kunci terhapus 2× lebih cepat, `O` −1 per 60 hari; pulih hanya lewat interaksi (§4.3). Erosi isolasi ini dan stagnasi (§6.11) berlaku untuk **semua** hero, tidak tunduk pada roll plastisitas di atas (isolasi mengikis siapa pun, kanon Aaron; LAPORAN 2026-09-26 Q3). Yang berubah cepat = **keadaan** (§2–§3), bukan sifat.
 
 ### 1.3 Tujuan pribadi (1–2 per hero, di-roll, tersembunyi)
 [PSI §7] karakter terasa hidup bila punya goal jangka panjang yang **kadang bertentangan** dengan pemain. Kanon: Aaron "[I have a purpose to be strong.]" demi keluarga (BK-3 #54); Han ingin pulang ke Bumi (BK-3 #3); Belquist ingin lebih kuat sampai pergi sendiri (BK-2 #40); Nerissa memakai Twilight Brand yang memotong umur demi kekuatan (BK-2 #2); trainee Niflheim sukarela meski 80 % mati demi residensi (BK-1 #52); 8.429 hero memilih pulang saat perang usai (BK-3 #26).
@@ -66,10 +66,10 @@ Kanon: Han 1★ takut→panik→"out of panic" di battle pertama (ch.3–4) lalu
 | **mengabdi** (pada master/leader) | perintah dijalankan, dipercaya | master mengabaikan request-nya | patuh +, request masuk akal + |
 Distribusi awal (TERBUKA): bobot roll goal **diturunkan dari sifat**, bukan dari ★: terkuat ∝ C + (100−A)/2; melindungi ∝ A + X/2; diakui ∝ (100−H) + X/2; tenang/pulang ∝ (100−C) + E/2; membalas ∝ (100−A) + E/2; mengabdi ∝ H + A/2. ★ tidak dipakai (prinsip §0); kecenderungan kanon "1★ ingin tenang, 3★ ingin kuat" [INF] ch.10, 90 diharapkan muncul dari `C` μ yang sedikit berbeda, bukan dipaksa. Goal kedua di-roll 40 %.
 
-### 1.4 Idiosinkrasi (5–7 item per hero dari 6 kategori di bawah, tersembunyi, muncul di log)
+### 1.4 Idiosinkrasi (6–8 item per hero dari 6 kategori di bawah, tersembunyi, muncul di log)
 [PSI §7] preferensi kecil non-fungsional adalah sinyal individualitas terkuat bagi pengamat; [PSI §7 identifiable victim] satu detail personal > seluruh stat untuk memicu duka. Kanon: patung kuda (Han), membaca (Iolka), buku masak (Yurnet), headband dipakai hanya saat master online (Cadia BK-2 #54), diary bertanggal (Han BK-2 #9), tidur 3 jam saat latihan (ch.139), diet kentang (ch.34), menamai party "Bring a ticket!" (ch.177), canda "sister… mean" (ch.396).
 
-Katalog `IdioData` (id pendek): gift favorit ×1–2 & dibenci ×1 (dari GiftData — reaksi berbeda per hero [K] ch.51/107/135); makanan favorit/benci ×1 [K] ch.64, 16; hobi ×1 (koleksi · membaca · memasak · berkebun · permainan papan · musik · menulis diary · merawat senjata) [N] ch.273, 134, 369, 358, 284, 166; kebiasaan ×1 (bangun paling awal · makan sendiri · duduk di tempat yang sama di plaza · memeriksa gerbang tiap malam · berdoa sebelum misi · menyapa peri) [INF]; keengganan ×0–1 (tidak suka labirin · takut air · tidak mau melawan manusia · tidak tahan panas) — dipetakan ke `TerrainData`/tipe misi [N] ch.57 (humanoid → stres), ch.78 (labirin), ch.139 (air), ch.108 (gurun). Setiap idiosinkrasi menghasilkan: bias kecil di utilitas (§5), baris log berulang yang **dikenali pemain** (§7), dan bahan ritual duka (§6.10).
+Katalog `IdioData` (id pendek): gift favorit ×1–2 & dibenci ×1 (dari GiftData — reaksi berbeda per hero [K] ch.51/107/135); makanan favorit/benci ×1 [K] ch.64, 16; hobi ×1 (koleksi · membaca · memasak · berkebun · permainan papan · musik · menulis diary · merawat senjata) [N] ch.273, 134, 369, 358, 284, 166; kebiasaan ×1 (bangun paling awal · makan sendiri · duduk di tempat yang sama di plaza · memeriksa gerbang tiap malam · berdoa sebelum misi · menyapa peri) [INF]; keengganan ×0–1, peluang punya 1 = 50 % (TERBUKA, kalibrasi 4.4; LAPORAN 2026-09-26 Q4) (tidak suka labirin · takut air · tidak mau melawan manusia · tidak tahan panas) — dipetakan ke `TerrainData`/tipe misi [N] ch.57 (humanoid → stres), ch.78 (labirin), ch.139 (air), ch.108 (gurun). Setiap idiosinkrasi menghasilkan: bias kecil di utilitas (§5), baris log berulang yang **dikenali pemain** (§7), dan bahan ritual duka (§6.10).
 
 ### 1.5 Memori episodik (5–10 per hero)
 [PSI §7] merujuk masa lalu = tanda pikiran yang mengingat; [PSI §6] memori spesifik = bahan continuing bonds. Kanon: hero mengingat "three years without you" (BK-2 #56), memutar arsip rekan yang mati (ch.146), menulis diary (BK-2 #9), Amkena "They were all alive" (BK-3 #86).
@@ -323,7 +323,7 @@ Kanon: bentuk duka = keluar bond (Edith ch.29), berserk/soul turbulent saat reka
 |---|---|---|
 | Komplain masakan | food ≤ 40 & pref tidak cocok, p 0,3 | "['X' is dissatisfied with the cooking.]" [K] ch.16; ≥30 % → Tips |
 | Komplain riset | jam > 3 | "['X' expresses dissatisfaction!]" [K] ch.53 |
-| Stagnasi (kemewahan) | lantai ≥3 & semua need ≥ 90 selama 30 hari & goal ≠ terkuat | C −1/minggu (drift) [N] ch.156; hero Valhalla bosan ch.326 |
+| Stagnasi (kemewahan) | lantai ≥3 & semua need ≥ 90 selama 30 hari & goal ≠ terkuat | C −1/minggu (drift; berlaku semua hero, tidak tunduk roll plastisitas §1.2) [N] ch.156; hero Valhalla bosan ch.326 |
 | Kebosanan tugas | tugas sama ≥5 hari (O ≥ 60 ×1,5) | cmp −2/hari; request variasi |
 | Menolak jabatan | ditawari; goal terkuat & aut ≥ 60 | log NONKANON [N] ch.347; tidak ada sanksi kanon |
 | Menilai master | like ≤ 30 selama 30 hari | request berkurang 50 %, inisiatif sendiri naik (kanon: hero "menilai master" BK-3 #42; hero Unity pasif vs Taoni berinisiatif ch.153) |
@@ -445,6 +445,7 @@ M1: `Traits.roll` + `xp` seed + goal + idiosinkrasi + tag di `Hero.new()`; Bond/
 10. **Discharge** = [V1+]; di V0 goal "hidup tenang/pulang" hanya memengaruhi refusal & request vacation.
 11. **Id string `MENTIONS_DECEASED`** (§7.2–7.3) — bukan `MENTIONS_DEAD` (pemilik, 25 Sep 2026).
 12. **Data `panicEvents` + `minHpPct` dari engine** (§8.2) sebagai sumber `xp` — masuk draf kontrak BRIEF_SCRIPTER §3 (pemilik, 25 Sep 2026).
+13. **Plastisitas sifat per hero** (§1.2): 50 % hero tidak pernah bergeser, ditetapkan per hero seumur hidup; erosi isolasi & stagnasi berlaku untuk semua hero (LAPORAN 2026-09-26 Q2/Q3).
 
 ### 10.2 (TERBUKA — tunggu implementasi/simulasi, bukan PR desain)
 1. Semua koefisien §1.2/§1.2a roll, drift, `xp`, §2.2 laju, §3.2–3.5 (ambang, `vul`, `ld`, p sudden death), §3.6, §4.3 Δ & bobot f, §4.6 SIMCA, §5.2 bobot/bias/noise, §6 probabilitas, §6.10 durasi D — dikalibrasi §9 setelah harness jalan (M0 minggu 4).
