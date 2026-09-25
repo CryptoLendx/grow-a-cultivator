@@ -1,6 +1,6 @@
 # DESAIN AI NPC V0 — "M0 KEHENDAK BEBAS NPC": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
 
-Terakhir diperbarui: 25 September 2026, 22:50 WIB
+Terakhir diperbarui: 26 September 2026, 00:09 WIB
 
 ## 0. TUJUAN, SUMBER, CARA MEMBACA
 
@@ -102,7 +102,7 @@ hero.npc = {
   ls = dayIndex,
 }
 ```
-**Ukuran terukur** (repo, tugas §B 1.4, 25 Sep 2026; encoder JSON tiruan di runner Lune — konfirmasi dengan `HttpService:JSONEncode` di Studio): hero dummy dengan `npc` lengkap (8 `rl` + 10 `mm`) = **1.368 byte** (> 900); tanpa `rl`+`mm` = 770 byte (≤ 900). Blok `rl` ≈225 byte dan `mm` ≈361 byte dalam format objek; format array ≈153 / 201 byte. Keputusan `rl`+`mm` tetap di `heroes_N` (dengan format array) vs pindah ke key `social_N` diambil di M1 5.3 (TERBUKA). [INFERENSI] 1.000 hero × 1.368 byte ≈ 1,37 MB per key `heroes_N` — masih di bawah larangan >2 MB, tetapi hitungan endgame RISET_Batas_Teknis (asumsi 600–900 byte/hero) perlu dihitung ulang di M1 5.3.
+**Ukuran terukur** (repo, tugas §B 1.4, 25 Sep 2026; dikonfirmasi dengan `HttpService:JSONEncode` asli di Roblox Studio pada 26 Sep 2026 — angka identik dengan runner Lune): hero dummy dengan `npc` lengkap (8 `rl` + 10 `mm`) = **1.368 byte** (> 900); tanpa `rl`+`mm` = 770 byte (≤ 900). Blok `rl` ≈225 byte dan `mm` ≈361 byte dalam format objek; format array ≈153 / 201 byte. Keputusan `rl`+`mm` tetap di `heroes_N` (dengan format array) vs pindah ke key `social_N` diambil di M1 5.3 (TERBUKA). [INFERENSI] 1.000 hero × 1.368 byte ≈ 1,37 MB per key `heroes_N` — masih di bawah larangan >2 MB, tetapi hitungan endgame RISET_Batas_Teknis (asumsi 600–900 byte/hero) perlu dihitung ulang di M1 5.3.
 
 ---
 
