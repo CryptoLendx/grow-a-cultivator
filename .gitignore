@@ -1,0 +1,20 @@
+# Wally
+Packages/
+ServerPackages/
+DevPackages/
+
+# Rojo / Studio
+build/*
+!build/.gitkeep
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+sourcemap.json
+
+# selene (dibuat otomatis dari API dump Roblox)
+roblox.yml
+
+# Python
+__pycache__/
+*.pyc

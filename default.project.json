@@ -1,0 +1,33 @@
+{
+  "name": "grow-a-cultivator",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "$path": "src/ReplicatedStorage",
+      "Packages": {
+        "$path": {
+          "optional": "Packages"
+        }
+      },
+      "DevPackages": {
+        "$path": {
+          "optional": "DevPackages"
+        }
+      }
+    },
+    "ServerScriptService": {
+      "$path": "src/ServerScriptService",
+      "ServerPackages": {
+        "$path": {
+          "optional": "ServerPackages"
+        }
+      }
+    },
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "Tests": {
+        "$path": "tests"
+      }
+    }
+  }
+}
