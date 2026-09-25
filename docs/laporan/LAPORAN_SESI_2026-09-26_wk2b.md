@@ -1,6 +1,6 @@
 # LAPORAN SESI — 26 Sep 2026 (WIB), sesi kedua — keputusan Q1–Q4 + tugas 2.3
 
-Branch `claude/autonomy-needs-mental-stress-ori5pt` (dari `main` 4551272) · PR: lihat bagian 7 · alur sinkron: `docs/ALUR_SYNC.md`
+Branch `claude/autonomy-needs-mental-stress-ori5pt` (dari `main` 4551272) · PR #4 (belum di-merge) · alur sinkron: `docs/ALUR_SYNC.md`
 Nama berkas diberi akhiran `b` karena `LAPORAN_SESI_2026-09-26_wk2.md` sudah dipakai sesi pertama tanggal yang sama. Rujukan pertanyaan: `LAPORAN 2026-09-26b Qn`.
 
 ## 1. Ringkasan
@@ -100,13 +100,13 @@ Nama berkas diberi akhiran `b` karena `LAPORAN_SESI_2026-09-26_wk2.md` sudah dip
 ## 7. Belum diverifikasi / langkah berikutnya
 - TestEZ di Studio belum dijalankan untuk commit sesi ini (`tests/run.server.luau`; tempel output ke PR). `Profile.open` masih ditunda ke 5.4.
 - Penyimpanan `st`/`ld`/`xp`/`nd` ke profil dan byte hero baru belum diubah; itu bagian M1 5.3 (Q3).
-- PR sesi ini sudah dibuat dan **tidak di-merge**. Merge dilakukan di Langkah 0a sesi berikutnya setelah review Cowork.
+- PR #4 sudah dibuat dan **tidak di-merge**. Merge dilakukan di Langkah 0a sesi berikutnya setelah review Cowork.
 - Berikutnya: tugas 2.4 `Mental/MoralInjury.luau` + `Mental/SuddenDeath.luau`.
 
 ```
 PROMPT SESI BERIKUTNYA
 Sesi baru — repo CryptoLendx/grow-a-cultivator. Kerjakan berurutan tanpa menunggu saya:
-LANGKAH 0a — merge sesi sebelumnya: merge PR dari branch claude/autonomy-needs-mental-stress-ori5pt ke main (merge biasa).
+LANGKAH 0a — merge sesi sebelumnya: merge PR #4 (branch claude/autonomy-needs-mental-stress-ori5pt) ke main (merge biasa).
   Bila merge lewat GitHub gagal: fetch, checkout main, merge branch itu secara lokal, push ke main.
   Bila ada konflik: berhenti dan laporkan. Setelah itu kerjakan dari main terbaru, di branch sesi baru.
 LANGKAH 0b — cocokkan "Terakhir diperbarui": docs/DESAIN_AI_NPC_V0.md (26 Sep 2026, 01:16 WIB, atau lebih baru bila Q1/Q3
