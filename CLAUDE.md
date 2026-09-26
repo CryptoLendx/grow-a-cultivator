@@ -41,6 +41,7 @@ Lihat `docs/RENCANA_Build_Hibrida.md` §2 (peta folder). `Data/AutonomyData.luau
 - Akhir sesi: tulis `docs/laporan/LAPORAN_SESI_<YYYY-MM-DD>_wkN.md` (7 bagian), commit + push, lalu beri pemilik tautan laporan + satu prompt pendek untuk Cowork.
 - Pertanyaan hanya untuk keputusan milik pemilik, format `Qn` + opsi + rekomendasi default; hal yang jelas dari docs dikerjakan dan dicatat sebagai ASUMSI.
 - Balasan `Qn: …` dari pemilik/Cowork dicatat ke `docs/KEPUTUSAN.md` sebelum tugas baru dimulai.
+- Mode otomatis (scheduled task tiap jam): ikuti `docs/ALUR_SYNC.md` bagian "Mode otomatis"; antrean keputusan pemilik = `docs/PERTANYAAN_PEMILIK.md`.
 - Batas sesi: satu sesi Claude Code = satu siklus (kerjakan tugas → laporan). Sesi berikutnya dimulai sebagai sesi BARU dari `main`; konteks dibawa oleh repo (CLAUDE.md, `docs/KEPUTUSAN.md`, `docs/STATUS.md`, laporan), bukan oleh riwayat chat. Beri tahu pemilik dan berhenti di batas butir yang bersih bila: konteks pernah dipadatkan otomatis (auto-compact), sudah membaca ≥3 dokumen besar docs/ penuh, atau tugas berikutnya butuh baca ulang docs besar. Bagian 7 laporan WAJIB memuat blok "PROMPT SESI BERIKUTNYA" siap-tempel (tugas berikut + Langkah 0 tanggal docs + tempat menempel balasan Qn).
 
 ## Jangan

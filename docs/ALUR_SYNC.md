@@ -1,6 +1,6 @@
 # ALUR SINKRON — Claude Code ↔ Claude Cowork
 
-Terakhir diperbarui: 26 September 2026, 01:00 WIB (disetujui pemilik)
+Terakhir diperbarui: 26 September 2026, 16:05 WIB (disetujui pemilik)
 
 Tujuan: Claude Code (repo) dan Claude Cowork (Project Knowledge + konektor GitHub repo ini) tetap selaras. Peran pemilik cukup meneruskan pesan pendek dan mengoreksi bila ada yang melenceng.
 
@@ -37,3 +37,27 @@ Siklus normal: **Code → Cowork → Code**. Riwayat chat bukan tempat menyimpan
 - **Laporan bagian 7** wajib memuat blok `PROMPT SESI BERIKUTNYA` siap-tempel: tugas berikut, Langkah 0 (tanggal docs), dan tempat menempel balasan `Qn` dari Cowork. Pemilik cukup menempel: prompt itu + blok Q dari Cowork.
 - **Cowork:** satu chat boleh melayani beberapa siklus; Cowork memberi tahu saat chat panjang dan menyertakan prompt chat baru (Project Knowledge `PROMPT_Chat_Berikutnya_Tahap0.md`). Tiap chat baru menyambung ulang repo ini.
 - **Baca hemat:** baca bagian docs yang dirujuk tugas, bukan seluruh dokumen, kecuali tugas menuntut.
+
+## Mode otomatis (scheduled task tiap jam) [disetujui pemilik 26 Sep 2026]
+Tiap putaran = sesi Claude Code BARU dari `main`, tanpa pemilik. Satu putaran = satu tugas brief §B. Koordinasi dengan Cowork hanya lewat repo:
+- `docs/PERTANYAAN_PEMILIK.md` = antrean keputusan milik pemilik. Cowork/pemilik menulis jawaban di sana (status DIJAWAB); putaran otomatis memindahkannya ke `docs/KEPUTUSAN.md` (sumber "pemilik/Cowork") lalu menghapusnya dari antrean.
+- Cowork meng-commit koreksi `docs/` langsung ke `main` dan menyinkronkan Project Knowledge saat pemilik membuka chat ("sinkron").
+
+### Urutan tiap putaran
+0. **Kunci & rem.** Berhenti tanpa mengerjakan apa pun bila: ada berkas `docs/AUTO_PAUSE`; ada PR terbuka berjudul `[WIP auto]` yang dibuat < 3 jam lalu (putaran lain masih jalan — yang ≥ 3 jam dianggap macet: tutup dengan komentar lalu lanjut); `docs/PERTANYAAN_PEMILIK.md` punya ≥ 5 pertanyaan TERBUKA; semua tugas §B minggu 1–6 selesai. Setelah lolos, langsung buat branch + draft PR `[WIP auto] …` sebagai kunci.
+1. **Terapkan jawaban** berstatus DIJAWAB di `docs/PERTANYAAN_PEMILIK.md` → `docs/KEPUTUSAN.md` (+ ubah kode bila perlu).
+2. **Review PR sebelumnya** (PR terbuka tertua dari sesi manual atau `[auto]`): baca bagian 6 laporannya; tiap Qn diklasifikasi:
+   - **MEKANIS** (kriteria/angka tes yang disesuaikan dengan rumus docs, penamaan, format simpan, penanda runtime, ASUMSI teknis) → jawab = rekomendasi laporan, catat di `docs/KEPUTUSAN.md` dengan sumber "auto (rekomendasi)"; koreksi teks Brief §B bila perlu (naikkan "Terakhir diperbarui").
+   - **DESAIN** (mengubah keputusan FINAL / DESAIN §10.1, menambah atau mengubah perilaku hero yang dirasakan pemain, angka TERBUKA di luar default docs, tafsir kanon) → JANGAN diputuskan: tulis ke `docs/PERTANYAAN_PEMILIK.md` (TERBUKA, opsi, default sementara); kode tetap memakai default rekomendasi yang sudah bertanda ASUMSI.
+3. **Merge** PR itu bila seluruh suite test lulus di `main`+PR dan tanpa konflik; bila gagal/konflik → catat di `docs/PERTANYAAN_PEMILIK.md` dan berhenti.
+4. **Kerjakan tugas berikutnya** (urutan brief §B). Tugas yang bergantung pada pertanyaan DESAIN TERBUKA tanpa default di docs → lewati ke tugas independen berikutnya; tidak ada → berhenti. Yang butuh PC/Studio (TestEZ Studio, `Profile.open`) dicatat, tidak ditunggu.
+5. **Akhir:** STATUS + laporan 7 bagian → ubah judul PR menjadi `[auto] wkN X.Y …`, tandai ready, **jangan merge** (di-merge putaran berikutnya di langkah 3).
+
+### Larangan mode otomatis
+- Mengubah angka TERBUKA hanya supaya metrik §9/test lulus — laporkan saja.
+- Mengubah keputusan di `docs/KEPUTUSAN.md`, §0/§10.1 DESAIN, atau isi `DESAIN_*` selain koreksi MEKANIS.
+- Menyentuh `Combat/`, `Tower/`, `sim/combat_*`.
+- Lebih dari satu tugas §B per putaran.
+
+### Perawatan (sekali)
+- Bila `roblox.yml` (std selene) belum ada di repo: generate sekali, commit, dan pakai itu — jangan membangun ulang selene tiap sesi.
