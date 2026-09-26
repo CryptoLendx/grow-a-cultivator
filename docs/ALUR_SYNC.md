@@ -1,6 +1,6 @@
 # ALUR SINKRON — Claude Code ↔ Claude Cowork
 
-Terakhir diperbarui: 26 September 2026, 18:20 WIB (disetujui pemilik)
+Terakhir diperbarui: 26 September 2026, 16:05 WIB (disetujui pemilik)
 
 Tujuan: Claude Code (repo) dan Claude Cowork (Project Knowledge + konektor GitHub repo ini) tetap selaras. Peran pemilik cukup meneruskan pesan pendek dan mengoreksi bila ada yang melenceng.
 
@@ -58,7 +58,6 @@ Tiap putaran = sesi Claude Code BARU dari `main`, tanpa pemilik. Satu putaran = 
 - Mengubah keputusan di `docs/KEPUTUSAN.md`, §0/§10.1 DESAIN, atau isi `DESAIN_*` selain koreksi MEKANIS.
 - Menyentuh `Combat/`, `Tower/`, `sim/combat_*`.
 - Lebih dari satu tugas §B per putaran.
-- Mengubah scheduled task (prompt, jadwal, izin) milik putaran otomatis — perubahan hanya lewat Cowork/pemilik.
 
 ### Perawatan (sekali)
 - Bila `roblox.yml` (std selene) belum ada di repo: generate sekali, commit, dan pakai itu — jangan membangun ulang selene tiap sesi.
