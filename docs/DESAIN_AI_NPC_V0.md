@@ -1,6 +1,6 @@
 # DESAIN AI NPC V0 — "M0 KEHENDAK BEBAS NPC": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
 
-Terakhir diperbarui: 26 September 2026, 01:16 WIB
+Terakhir diperbarui: 26 September 2026, 15:15 WIB
 
 ## 0. TUJUAN, SUMBER, CARA MEMBACA
 
@@ -99,9 +99,14 @@ hero.npc = {
   rl = { {id, p}, ... }, -- ≤8 relasi ternotasi packed (§4.4)
   mm = { {d,k,o,v}, ...},-- ≤10 memori
   tg = {asal, angkatan}, -- tag identitas (§4.6)
+  sk = {hi, lo},         -- hari berturut st≥60 / st<40 (untuk ld, §3.2)
+  cd = 0,                -- hari tempur berturut (kurva combat fatigue §3.3)
+  xe = {..},             -- episode panic/despair yang menunggu cek pemulihan 3 hari (§1.2a)
   ls = dayIndex,
 }
 ```
+Penanda runtime `sk`/`cd`/`xe` wajib disimpan agar `ld`, kurva combat fatigue, dan sensitisasi tidak ter-reset saat catch-up (LAPORAN 2026-09-26b Q3); bentuk & byte final diputuskan bersama `rl`/`mm` di M1 5.3.
+
 **Ukuran terukur** (repo, tugas §B 1.4, 25 Sep 2026; dikonfirmasi dengan `HttpService:JSONEncode` asli di Roblox Studio pada 26 Sep 2026 — angka identik dengan runner Lune): hero dummy dengan `npc` lengkap (8 `rl` + 10 `mm`) = **1.368 byte** (> 900); tanpa `rl`+`mm` = 770 byte (≤ 900). Blok `rl` ≈225 byte dan `mm` ≈361 byte dalam format objek; format array ≈153 / 201 byte. Keputusan `rl`+`mm` tetap di `heroes_N` (dengan format array) vs pindah ke key `social_N` diambil di M1 5.3 (TERBUKA). [INFERENSI] 1.000 hero × 1.368 byte ≈ 1,37 MB per key `heroes_N` — masih di bawah larangan >2 MB, tetapi hitungan endgame RISET_Batas_Teknis (asumsi 600–900 byte/hero) perlu dihitung ulang di M1 5.3.
 
 ---
@@ -128,7 +133,7 @@ Kanon menunjukkan lima jenis kekurangan yang memicu perilaku: **lelah** ("Contin
 | aut | −1 | ×(1 + O/100) | dipaksa −15 (frustrasi, bukan sekadar tidak dipenuhi); request ditolak −5; dikabulkan +8; memilih aksi sendiri +3 |
 | cmp | −3 | ×(0,6 + (100−H)/100·0,6) — gila hormat turun lebih cepat | MVP +25; naik lantai +20; kalah duel −10; tugas monoton ≥5 hari −2/hari (O tinggi ×1,5) |
 | rel | −3 | ×(0,4 + X/100) — penyendiri turun lambat | party tetap +2; makan bersama +3; dihibur +6; ikatan intim ada: floor 40 (tidak pernah di bawah 40) |
-**Kebutuhan sosial sebagai kontinum, bukan kategori** (prinsip §0): target `rel` tiap hero = `40 + 0,6·X` (X 0 → 40, X 100 → 100) dan decay ×(0,4 + X/100) di atas — sehingga hero `X` rendah **tidak** sakit karena sendiri, dan tidak ada roll "avoidant" terpisah. Keramaian (party 5 + plaza penuh) menguras `rest` −2·(1 − X/100) tambahan (introvert lelah oleh keramaian, ekstrovert tidak). Dengan roll N(50, 15), proporsi hero `X ≤ 35` ≈ 16 % dan `X ≤ 45` ≈ 37 % — ini **hasil**, bukan target; [PSI §3] "25–35 % penyendiri" hanya dipakai sebagai rentang pembanding di §9. Kanon: Katio bekerja sendiri sebagai scout (BK-2 #7), Nerissa jalur admin, Muden 300 tahun berkebun sendiri (BK-3 §B).
+**Kebutuhan sosial sebagai kontinum, bukan kategori** (prinsip §0): target `rel` tiap hero = `40 + 0,6·X` (X 0 → 40, X 100 → 100) dan decay ×(0,4 + X/100) di atas — sehingga hero `X` rendah **tidak** sakit karena sendiri, dan tidak ada roll "avoidant" terpisah. **Lantai sendiri:** tanpa kontak, `rel` hanya meluruh sampai `100 − target` (X 0 → 60, X 50 → 30, X 100 → 0); kehilangan boleh menembus lantai ini, dan ikatan intim hidup tetap memberi floor 40 (LAPORAN 2026-09-26b Q1, tafsiran Claude Code disetujui: defisit = target − kontak). Akibatnya hero `X ≤ 33` tidak pernah `rel < 40` tanpa kehilangan. **Nilai awal** kelima kebutuhan saat summon = 50 (TERBUKA, kalibrasi 4.4; `rel` awal = max(50, lantai sendiri); LAPORAN 2026-09-26b Q2). Keramaian (party 5 + plaza penuh) menguras `rest` −2·(1 − X/100) tambahan (introvert lelah oleh keramaian, ekstrovert tidak). Dengan roll N(50, 15), proporsi hero `X ≤ 35` ≈ 16 % dan `X ≤ 45` ≈ 37 % — ini **hasil**, bukan target; [PSI §3] "25–35 % penyendiri" hanya dipakai sebagai rentang pembanding di §9. Kanon: Katio bekerja sendiri sebagai scout (BK-2 #7), Nerissa jalur admin, Muden 300 tahun berkebun sendiri (BK-3 §B).
 
 ---
 
