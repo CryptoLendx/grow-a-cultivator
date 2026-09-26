@@ -1,6 +1,6 @@
 # DESAIN AI NPC V0 — "M0 KEHENDAK BEBAS NPC": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
 
-Terakhir diperbarui: 26 September 2026, 15:15 WIB
+Terakhir diperbarui: 26 September 2026, 16:40 WIB
 
 ## 0. TUJUAN, SUMBER, CARA MEMBACA
 
@@ -260,6 +260,8 @@ Kanon: gang Sitan = **10 dari ~25** hero lantai 1 (ch.65) — bukan semua; pemic
 | **mengenang** (§6.10) | duka aktif, loss_mode | rel +2 | trajektori | mengunjungi Archive/memento; log | [K] ch.79, 146 |
 | **menganggur** | default | rest +10 | — | stres +1 bila ≥7 hari tanpa keterlibatan (goal ≠ tenang) | [N] ch.159 |
 
+**Latihan terarah ke lantai berikutnya** [disetujui pemilik 26 Sep 2026; USUL Cowork dari kanon ch.9, 22, 34–35, 54, 67, 74–76, 110, 138–139]: bila lantai target party berikutnya diketahui (lantai tertinggi + 1, atau request misi leader §6.9) dan `TerrainData`/`EnemyData` lantai itu bertag bahaya, **party leader** dengan `C ≥ 60` atau goal terkuat/melindungi menetapkan latihan terarah pada hari non-misi — juga saat master offline (kanon ch.9: latihan jalan tanpa master). Bentuk kanon per tag: api/panas → brazier (Fire Resistance ch.35, 74) · nyeri/pendarahan → melukai diri + potion (Pain Resistance ch.34) · proyektil → dihujani panah (ch.75) · humanoid/koordinasi → sparring & formation training (ch.67, 76) · air → renang/tahan napas (ch.138–139); tag tanpa padanan → `latih` generik. Anggota ikut seperti latihan wajib §5.1 (anggota `C < 30 & A < 40` boleh skip → a −1 ke leader). Efek M0: menggantikan `latih` generik hari itu (gain & stres sama; bentuk nyeri +2 stres per sesi, TERBUKA); menambah penghitung hari latihan per tag per hero yang dipakai sistem skill M1/M5 — ambang perolehan skill resistansi TERBUKA (kanon 2–4 hari ch.74–75), disimpan bersama data skill, bukan di `npc`. Log berpotret menyebut leader & bentuk latihan.
+
 ---
 
 ## 6. EVENT: PEMICU, PROBABILITAS, KELUARAN
@@ -350,6 +352,7 @@ Kanon manhwa: hero punya percakapan & kehidupan penuh yang **tidak** sampai ke m
 3. **Balon bicara** di markas: satu ikon/teks pendek per hero = aksi hari ini (latih/istirahat/hobi X/mengenang Y/kesal/senang).
 4. **Kartu memorial** (Archive, DESAIN §5.2): saat hero mati, sistem merangkai kartu dari: nama & ★ & umur layanan; 3–5 memori valensi tertinggi (dengan siapa); idiosinkrasi (hobi, makanan, kebiasaan); relasi bernama (sahabat, murid, sumpah); barang peninggalan (bila ada). Ini bahan duka pemain; pemain boleh memberi nama nisan & memilih memento (ritual [PSI §6]).
 5. **Business report sub-master** [K] ch.268: ringkasan mingguan tanpa angka tersembunyi: siapa stres (nama), siapa berduka, keluhan lantai, klik yang terbentuk, usulan (bangun Bathhouse; naikkan X; beri libur party N).
+6. **Kotak rekomendasi peri** (M7/M8) [disetujui pemilik 26 Sep 2026; INF kanon ch.24, 67, 138, 204, 268]: semua request hero (§6.9), usulan party leader (komposisi, lantai, latihan terarah §5.2), laporan & usulan sub-master (butir 5), dan rekomendasi sistem (mis. fasilitas kurang, hero ber-warning stres) dihimpun jadi satu antrean Yes/No yang disampaikan peri; pemain cukup menekan Yes/No. Peri tidak memutuskan sendiri (kanon ch.24 "But I can't"); bila ada sub-master, usulan dispatch/komposisi datang lewat sub-master (ch.204). Tanpa angka tersembunyi.
 
 ### 7.3 Format string (contoh)
 ```
@@ -451,6 +454,7 @@ M1: `Traits.roll` + `xp` seed + goal + idiosinkrasi + tag di `Hero.new()`; Bond/
 11. **Id string `MENTIONS_DECEASED`** (§7.2–7.3) — bukan `MENTIONS_DEAD` (pemilik, 25 Sep 2026).
 12. **Data `panicEvents` + `minHpPct` dari engine** (§8.2) sebagai sumber `xp` — masuk draf kontrak BRIEF_SCRIPTER §3 (pemilik, 25 Sep 2026).
 13. **Plastisitas sifat per hero** (§1.2): 50 % hero tidak pernah bergeser, ditetapkan per hero seumur hidup; erosi isolasi & stagnasi berlaku untuk semua hero (LAPORAN 2026-09-26 Q2/Q3).
+14. **Latihan terarah ke lantai berikutnya** (§5.2) dan **kotak rekomendasi peri** (§7.2 #6) — pemilik, 26 Sep 2026. "Pura-pura latihan" TIDAK dibangun kecuali ditemukan dasar kanonnya (pemilik: "kalau tidak ada di kanon, tidak usah").
 
 ### 10.2 (TERBUKA — tunggu implementasi/simulasi, bukan PR desain)
 1. Semua koefisien §1.2/§1.2a roll, drift, `xp`, §2.2 laju, §3.2–3.5 (ambang, `vul`, `ld`, p sudden death), §3.6, §4.3 Δ & bobot f, §4.6 SIMCA, §5.2 bobot/bias/noise, §6 probabilitas, §6.10 durasi D — dikalibrasi §9 setelah harness jalan (M0 minggu 4).
