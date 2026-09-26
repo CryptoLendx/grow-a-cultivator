@@ -1,6 +1,6 @@
 # ALUR SINKRON — Claude Code ↔ Claude Cowork
 
-Terakhir diperbarui: 26 September 2026, 20:20 WIB (disetujui pemilik)
+Terakhir diperbarui: 26 September 2026, 22:55 WIB (disetujui pemilik)
 
 Tujuan: Claude Code (repo) dan Claude Cowork (Project Knowledge + konektor GitHub repo ini) tetap selaras. Peran pemilik cukup meneruskan pesan pendek dan mengoreksi bila ada yang melenceng.
 
@@ -44,14 +44,14 @@ Tiap putaran = sesi Claude Code BARU dari `main`, tanpa pemilik. Satu putaran = 
 - Cowork meng-commit koreksi `docs/` langsung ke `main` dan menyinkronkan Project Knowledge saat pemilik membuka chat ("sinkron").
 
 ### Urutan tiap putaran
-0. **Kunci & rem.** Berhenti tanpa mengerjakan apa pun bila: ada berkas `docs/AUTO_PAUSE`; ada PR terbuka berjudul `[WIP auto]` yang dibuat < 3 jam lalu (putaran lain masih jalan — yang ≥ 3 jam dianggap macet: tutup dengan komentar lalu lanjut). **Tanpa GitHub API** kunci = branch `auto/<YYYY-MM-DD-HHMM>` (waktu UTC) yang belum ada di `main`; branch yang sudah memuat laporan baru `docs/laporan/LAPORAN_SESI_*` (belum ada di `main`) = putaran SELESAI → **bukan kunci**, melainkan PR sebelumnya untuk langkah 3, berapa pun umurnya (Cowork 26 Sep 20:20); `docs/PERTANYAAN_PEMILIK.md` punya ≥ 5 pertanyaan TERBUKA; semua tugas §B minggu 1–6 selesai. Setelah lolos, langsung buat branch + draft PR `[WIP auto] …` sebagai kunci.
+0. **Kunci & rem.** Berhenti tanpa mengerjakan apa pun bila: ada berkas `docs/AUTO_PAUSE`; ada PR terbuka berjudul `[WIP auto]` yang dibuat < 3 jam lalu (putaran lain masih jalan — yang ≥ 3 jam dianggap macet: tutup dengan komentar lalu lanjut). **Tanpa GitHub API** kunci = branch `auto/<YYYY-MM-DD-HHMM>` (waktu UTC) yang belum ada di `main`: SELESAI (ada commit `docs/laporan/` sesudah commit `auto: kunci` terakhirnya) = bukan kunci; tanpa laporan & <3 jam = BERJALAN → berhenti; tanpa laporan & ≥3 jam = MACET → diabaikan (hapus branch diblokir proxy; dicatat sekali bila berisi commit kerja). **Rantai:** ≥6 branch SELESAI yang belum di-merge ke `main` → berhenti (menunggu sinkron) (Cowork 26 Sep 22:55); `docs/PERTANYAAN_PEMILIK.md` punya ≥ 5 pertanyaan TERBUKA; semua tugas §B minggu 1–6 selesai. Setelah lolos, langsung buat branch + draft PR `[WIP auto] …` sebagai kunci.
 1. **Terapkan jawaban** berstatus DIJAWAB di `docs/PERTANYAAN_PEMILIK.md` → `docs/KEPUTUSAN.md` (+ ubah kode bila perlu).
 2. **Review PR sebelumnya** (PR terbuka tertua dari sesi manual atau `[auto]`): baca bagian 6 laporannya; tiap Qn diklasifikasi:
    - **MEKANIS** (kriteria/angka tes yang disesuaikan dengan rumus docs, penamaan, format simpan, penanda runtime, ASUMSI teknis) → jawab = rekomendasi laporan, catat di `docs/KEPUTUSAN.md` dengan sumber "auto (rekomendasi)"; koreksi teks Brief §B bila perlu (naikkan "Terakhir diperbarui").
    - **DESAIN** (mengubah keputusan FINAL / DESAIN §10.1, menambah atau mengubah perilaku hero yang dirasakan pemain, angka TERBUKA di luar default docs, tafsir kanon) → JANGAN diputuskan: tulis ke `docs/PERTANYAAN_PEMILIK.md` (TERBUKA, opsi, default sementara); kode tetap memakai default rekomendasi yang sudah bertanda ASUMSI.
-3. **Merge** PR itu bila seluruh suite test lulus di `main`+PR dan tanpa konflik; bila gagal/konflik → catat di `docs/PERTANYAAN_PEMILIK.md` dan berhenti.
+3. **Tanpa merge ke `main`** (pengaman izin sesi menolak push merge ke main, 26 Sep 21:04/22:04). Putaran bekerja **bertumpuk**: branch kerja dibuat dari ujung rantai = branch SELESAI terbaru yang belum ada di `main` (tidak ada → `origin/main`), lalu `git merge origin/main` ke branch kerja (membawa koreksi docs Cowork); suite harus lulus sebelum tugas dimulai; konflik/gagal → catat di `docs/PERTANYAAN_PEMILIK.md` di branch kerja, push, berhenti. Rantai di-merge ke `main` oleh Cowork/pemilik saat "sinkron" setelah audit.
 4. **Kerjakan tugas berikutnya** (urutan brief §B). Tugas yang bergantung pada pertanyaan DESAIN TERBUKA tanpa default di docs → lewati ke tugas independen berikutnya; tidak ada → berhenti. Yang butuh PC/Studio (TestEZ Studio, `Profile.open`) dicatat, tidak ditunggu.
-5. **Akhir:** STATUS + laporan 7 bagian → ubah judul PR menjadi `[auto] wkN X.Y …`, tandai ready, **jangan merge** (di-merge putaran berikutnya di langkah 3).
+5. **Akhir:** STATUS + laporan 7 bagian → ubah judul PR menjadi `[auto] wkN X.Y …`, tandai ready, **jangan merge** (di-merge Cowork/pemilik saat "sinkron").
 
 ### Larangan mode otomatis
 - Mengubah angka TERBUKA hanya supaya metrik §9/test lulus — laporkan saja.
