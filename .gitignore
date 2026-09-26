@@ -12,8 +12,6 @@ build/*
 *.rbxlx.lock
 sourcemap.json
 
-# selene (dibuat otomatis dari API dump Roblox)
-roblox.yml
 
 # Python
 __pycache__/
