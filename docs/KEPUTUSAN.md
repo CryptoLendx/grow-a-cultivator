@@ -27,3 +27,8 @@ Dicatat oleh Claude Code dari balasan pemilik/Cowork. Keputusan di sini tidak di
 | 2026-09-26 | LAPORAN 2026-09-25 Q9 | Packing relasi: docs dikoreksi menjadi "≤28 bit" | Cowork/pemilik |
 | 2026-09-26 | LAPORAN 2026-09-25 Q10 | Brief 2.3 dikoreksi mengikuti DESAIN §2.2 (kontinum `40 + 0,6·X`) | Cowork/pemilik |
 | 2026-09-26 | LAPORAN 2026-09-25 Q11 | 4 string [K] ch.65 ditambahkan ke Data_Strings_K_Lengkap #10–#13 (FLOOR_ASSIGN_PARTY, FLOOR_ASSIGN_NAMES, FLOOR_ASSIGN_REST, ROOM_HEADCOUNT); catatan #9 dikoreksi | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-26 Q1 | A: jumlah idiosinkrasi per hero = 6–8 item; docs §1.4 dikoreksi (gift fav ×1–2 + dibenci ×1 + makanan 2 + hobi + kebiasaan + keengganan ×0–1) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-26 Q2 | A: "tidak bergeser sama sekali" (§1.2) = roll 50 % **per hero**, tetap seumur hidup, dari `profileSeed`+`heroId` (0 byte) | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-26 Q3 | A: erosi isolasi (E +1/30 hari, O −1/60 hari) dan stagnasi §6.11 berlaku untuk **semua** hero, tidak tunduk roll plastisitas | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-26 Q4 | A: peluang punya 1 keengganan = 50 % (TERBUKA, kalibrasi 4.4) | Cowork/pemilik |
+| 2026-09-26 | Docs berubah | `docs/DESAIN_AI_NPC_V0.md` — 26 Sep 2026, 01:16 WIB (§1.4 6–8 item + keengganan 50 % TERBUKA; §1.2 plastisitas per hero seumur hidup, erosi isolasi semua hero; §6.11 stagnasi semua hero; §10.1 #13). Q1–Q4 = default yang sudah diterapkan sesi 26 Sep; `Traits.luau` diverifikasi sesuai, tanpa perubahan kode | Cowork/pemilik |
