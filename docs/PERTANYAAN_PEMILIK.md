@@ -18,3 +18,9 @@ Diisi putaran otomatis (pertanyaan DESAIN) dan Cowork/pemilik (jawaban). Aturan:
 ## TERBUKA (menunggu pemilik)
 | # | Tanggal | Rujukan / tugas terdampak | Pertanyaan | Opsi | Default sementara |
 |---|---|---|---|---|---|
+
+## DIJAWAB — tambahan Cowork 26 Sep 18:55 WIB (ditulis di `main` saat PR #6 masih terbuka; putaran berikut: catat ke `docs/KEPUTUSAN.md` lalu hapus bagian ini)
+| # | Tanggal | Rujukan | Jawaban | Sumber |
+|---|---|---|---|---|
+| J8 | 2026-09-26 | LAPORAN 2026-09-26c Q2 | **A** — roll sudden death hanya bila warning episode ini berumur ≥ `warnWindow.min` (3) hari. Alasan pemilik: kematian = ujung efek bola salju, bukan lonjakan sehari; hero bermental kuat mengatasi stresnya sendiri, yang lemah bisa minta rehat dari petualangan (§5.2/§6.9) — jendela itu harus ada | pemilik (18:23 WIB) |
+| J9 | 2026-09-26 | LAPORAN 2026-09-26c Q5 | Δ guilt "pengakuan" (master menerima tuntutan) dan "ritual" (§6.10) TIDAK dikarang: angkanya diambil dari `docs/RISET_NPC_Kalibrasi_Empiris.md` (riset kalibrasi empiris Cowork, sedang berjalan) dan dimasukkan ke DESAIN §3.4 sebagai default [PSI-angka]. Sampai berkas itu ada di `main`: default sementara = opsi A laporan (tidak ada efek, tidak dibangun); jangan pakai opsi B (−20) | pemilik + Cowork |
