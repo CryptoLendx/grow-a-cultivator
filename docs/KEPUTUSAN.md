@@ -32,3 +32,10 @@ Dicatat oleh Claude Code dari balasan pemilik/Cowork. Keputusan di sini tidak di
 | 2026-09-26 | LAPORAN 2026-09-26 Q3 | A: erosi isolasi (E +1/30 hari, O −1/60 hari) dan stagnasi §6.11 berlaku untuk **semua** hero, tidak tunduk roll plastisitas | Cowork/pemilik |
 | 2026-09-26 | LAPORAN 2026-09-26 Q4 | A: peluang punya 1 keengganan = 50 % (TERBUKA, kalibrasi 4.4) | Cowork/pemilik |
 | 2026-09-26 | Docs berubah | `docs/DESAIN_AI_NPC_V0.md` — 26 Sep 2026, 01:16 WIB (§1.4 6–8 item + keengganan 50 % TERBUKA; §1.2 plastisitas per hero seumur hidup, erosi isolasi semua hero; §6.11 stagnasi semua hero; §10.1 #13). Q1–Q4 = default yang sudah diterapkan sesi 26 Sep; `Traits.luau` diverifikasi sesuai, tanpa perubahan kode | Cowork/pemilik |
+| 2026-09-26 | LAPORAN 2026-09-26b Q1 | A: lantai sendiri `rel` = 100 − target; Brief 2.3 penyendiri X≤33, "semua need <30" untuk X>50 (docs dikoreksi 26 Sep 15:15). Kode 2.3 sudah sesuai, tanpa perubahan | Cowork |
+| 2026-09-26 | LAPORAN 2026-09-26b Q2 | A: nilai awal kebutuhan 50 (TERBUKA, kalibrasi 4.4). Sudah di `NpcData.needs.initial` | Cowork |
+| 2026-09-26 | LAPORAN 2026-09-26b Q3 | A: `sk`/`cd`/`xe` masuk DESAIN §1.6; byte diputuskan di 5.3 | Cowork |
+| 2026-09-26 | LAPORAN 2026-09-26b Q4 | A: Brief 2.3 — 1★ 15 misi → selisih cou_eff ≤3 ke 3★ segar (bukan plafon). Test `experience.spec` sudah meng-assert ≤3 | Cowork |
+| 2026-09-26 | P1 (tugas 3.4) | A: latihan terarah ke lantai berikutnya; spesifikasi DESAIN §5.2 & Brief 3.4 (26 Sep 16:40) | pemilik |
+| 2026-09-26 | P2 (M7/M8) | A: peri = kotak rekomendasi Yes/No; DESAIN §7.2 #6; tidak dibangun di Tahap 0 | pemilik |
+| 2026-09-26 | P3 (tugas 3.4) | "Pura-pura latihan" TIDAK dibangun kecuali ditemukan dasar kanonnya (bila chapter ditemukan, dibuka ulang) | pemilik |
