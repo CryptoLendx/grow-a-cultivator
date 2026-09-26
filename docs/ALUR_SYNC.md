@@ -1,6 +1,6 @@
 # ALUR SINKRON — Claude Code ↔ Claude Cowork
 
-Terakhir diperbarui: 26 September 2026, 22:55 WIB (disetujui pemilik)
+Terakhir diperbarui: 26 September 2026, 22:46 WIB (disetujui pemilik)
 
 Tujuan: Claude Code (repo) dan Claude Cowork (Project Knowledge + konektor GitHub repo ini) tetap selaras. Peran pemilik cukup meneruskan pesan pendek dan mengoreksi bila ada yang melenceng.
 
@@ -44,7 +44,7 @@ Tiap putaran = sesi Claude Code BARU dari `main`, tanpa pemilik. Satu putaran = 
 - Cowork meng-commit koreksi `docs/` langsung ke `main` dan menyinkronkan Project Knowledge saat pemilik membuka chat ("sinkron").
 
 ### Urutan tiap putaran
-0. **Kunci & rem.** Berhenti tanpa mengerjakan apa pun bila: ada berkas `docs/AUTO_PAUSE`; ada PR terbuka berjudul `[WIP auto]` yang dibuat < 3 jam lalu (putaran lain masih jalan — yang ≥ 3 jam dianggap macet: tutup dengan komentar lalu lanjut). **Tanpa GitHub API** kunci = branch `auto/<YYYY-MM-DD-HHMM>` (waktu UTC) yang belum ada di `main`: SELESAI (ada commit `docs/laporan/` sesudah commit `auto: kunci` terakhirnya) = bukan kunci; tanpa laporan & <3 jam = BERJALAN → berhenti; tanpa laporan & ≥3 jam = MACET → diabaikan (hapus branch diblokir proxy; dicatat sekali bila berisi commit kerja). **Rantai:** ≥6 branch SELESAI yang belum di-merge ke `main` → berhenti (menunggu sinkron) (Cowork 26 Sep 22:55); `docs/PERTANYAAN_PEMILIK.md` punya ≥ 5 pertanyaan TERBUKA; semua tugas §B minggu 1–6 selesai. Setelah lolos, langsung buat branch + draft PR `[WIP auto] …` sebagai kunci.
+0. **Kunci & rem.** Berhenti tanpa mengerjakan apa pun bila: ada berkas `docs/AUTO_PAUSE`; ada PR terbuka berjudul `[WIP auto]` yang dibuat < 3 jam lalu (putaran lain masih jalan — yang ≥ 3 jam dianggap macet: tutup dengan komentar lalu lanjut). **Tanpa GitHub API** kunci = branch `auto/<YYYY-MM-DD-HHMM>` (waktu UTC) yang belum ada di `main`: SELESAI (ada commit `docs/laporan/` sesudah commit `auto: kunci` terakhirnya) = bukan kunci; tanpa laporan & <3 jam = BERJALAN → berhenti; tanpa laporan & ≥3 jam = MACET → diabaikan (hapus branch diblokir proxy; dicatat sekali bila berisi commit kerja). **Rantai:** ≥6 branch SELESAI yang belum di-merge ke `main` → berhenti (menunggu sinkron) (Cowork 26 Sep 22:46); `docs/PERTANYAAN_PEMILIK.md` punya ≥ 5 pertanyaan TERBUKA; semua tugas §B minggu 1–6 selesai. Setelah lolos, langsung buat branch + draft PR `[WIP auto] …` sebagai kunci.
 1. **Terapkan jawaban** berstatus DIJAWAB di `docs/PERTANYAAN_PEMILIK.md` → `docs/KEPUTUSAN.md` (+ ubah kode bila perlu).
 2. **Review PR sebelumnya** (PR terbuka tertua dari sesi manual atau `[auto]`): baca bagian 6 laporannya; tiap Qn diklasifikasi:
    - **MEKANIS** (kriteria/angka tes yang disesuaikan dengan rumus docs, penamaan, format simpan, penanda runtime, ASUMSI teknis) → jawab = rekomendasi laporan, catat di `docs/KEPUTUSAN.md` dengan sumber "auto (rekomendasi)"; koreksi teks Brief §B bila perlu (naikkan "Terakhir diperbarui").
