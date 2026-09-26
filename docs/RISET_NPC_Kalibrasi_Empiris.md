@@ -1,4 +1,4 @@
-Terakhir diperbarui: 26 September 2026, 19:55 WIB
+Terakhir diperbarui: 26 September 2026, 19:38 WIB
 
 # RISET NPC — KALIBRASI EMPIRIS: dari angka (TERBUKA) ke default [PSI-angka]
 

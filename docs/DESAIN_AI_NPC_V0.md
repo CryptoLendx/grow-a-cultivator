@@ -1,6 +1,6 @@
 # DESAIN AI NPC V0 — "M0 KEHENDAK BEBAS NPC": HERO SEBAGAI MAKHLUK HIDUP (TANPA LLM RUNTIME)
 
-Terakhir diperbarui: 26 September 2026, 19:55 WIB
+Terakhir diperbarui: 26 September 2026, 19:38 WIB
 
 ## 0. TUJUAN, SUMBER, CARA MEMBACA
 

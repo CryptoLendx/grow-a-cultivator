@@ -1,6 +1,6 @@
 # CLAUDE CODE — BRIEF TAHAP 0 (minggu 1–6, kredit habis 5 Nov 2026)
 
-Terakhir diperbarui: 26 September 2026, 19:55 WIB
+Terakhir diperbarui: 26 September 2026, 19:38 WIB
 
 Berkas ini berisi (A) isi `CLAUDE.md` untuk repo, (B) urutan tugas Claude Code per minggu dengan kriteria verifikasi, (C) daftar berkas Project yang disalin ke `docs/`. Sumber: TAHAPAN_Build_AI_First §2–§3, RENCANA_Build_Hibrida §2–§4, DESAIN_AI_NPC_V0, BRIEF_SCRIPTER_M2_M3 §3, RISET_Batas_Teknis_Endgame §4. Status pengerjaan per minggu dicatat di `STATUS_Tahap0.md`.
 
