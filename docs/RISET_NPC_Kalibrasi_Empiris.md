@@ -1,8 +1,8 @@
-Terakhir diperbarui: 26 September 2026, 19:20 WIB
+Terakhir diperbarui: 26 September 2026, 19:55 WIB
 
 # RISET NPC — KALIBRASI EMPIRIS: dari angka (TERBUKA) ke default [PSI-angka]
 
-Status: [V0 — usulan Cowork, menunggu persetujuan pemilik per baris]. Melengkapi `RISET_NPC_Psikologi_Manusia.md` (sumber #1–64; **tidak diulang** di sini — berkas ini menambah **besaran**, bukan bentuk). Sumber baru bernomor **#65 dst.** di §10. Dipakai oleh Brief §B 4.4 (kalibrasi harness) dan oleh putaran otomatis untuk mengisi `NpcData`.
+Status: [V0 — **disetujui pemilik 26 Sep 2026 19:32**: Blok A seluruhnya + P-K1 A · P-K2 A · P-K3 C · P-K4 A · P-K5 A · P-K6 A · P-K7 A · P-K8 A · P-K9 A · P-K10 A · P-K11 B; sudah dimasukkan ke DESAIN_AI_NPC_V0 sebagai [PSI-angka]]. Melengkapi `RISET_NPC_Psikologi_Manusia.md` (sumber #1–64; **tidak diulang** di sini — berkas ini menambah **besaran**, bukan bentuk). Sumber baru bernomor **#65 dst.** di §10. Dipakai oleh Brief §B 4.4 (kalibrasi harness) dan oleh putaran otomatis untuk mengisi `NpcData`.
 
 ## 0. Prinsip, cara membaca, asumsi konversi
 

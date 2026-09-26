@@ -1,6 +1,6 @@
 # DATA STRINGS NONKANON — TEKS §7.2, VARIAN, KARTU MEMORIAL
 
-Terakhir diperbarui: 25 September 2026, 22:50 WIB
+Terakhir diperbarui: 26 September 2026, 19:55 WIB
 
 ## 0. Cakupan dan aturan penulisan
 
@@ -198,7 +198,17 @@ Peninggalan: pedang latihan pertama, disimpan oleh 'Padma'
 
 ---
 
-## 12. Checklist implementasi (untuk sesi Claude Code yang memasukkan ini ke `Data/Strings.luau`)
+## 12. REQUEST_REST — hero minta rehat saat stres (§6.9; pemilik 26 Sep; kanon terdekat ch.244 request fasilitas, ch.235 retreat)
+
+Dipicu saat `st ≥ ambang − 15` dan `cou_eff < 50` (p 0,3/hari). Prompt Yes/No ke master seperti request lain. Placeholder: `{name}` `{stars}`.
+
+```
+S.REQUEST_REST_1 = "['{name} ({stars})' requests a break from expeditions.]"
+S.REQUEST_REST_2 = "['{name} ({stars})' asks to be left out of the next mission.]"
+S.REQUEST_REST_3 = "[Master hero '{name} ({stars})' requests a vacation.]"
+```
+
+## 13. Checklist implementasi (untuk sesi Claude Code yang memasukkan ini ke `Data/Strings.luau`)
 
 1. Semua `S.<ID>_<n>` di atas masuk `Data/Strings.luau` dengan komentar `-- NONKANON` per baris (bukan per blok).
 2. `Strings.format(id, tbl)` (`Shared/Strings.luau`, tugas 1.5 Brief Tahap 0) harus bisa mengisi semua placeholder baru di atas: `{item}` `{other}` `{os}` `{hobby}` `{goal}` `{position}` `{deceased}` `{a}` `{b}` `{bond}` — sebagian sudah ada dari §7.3, sisanya baru.
